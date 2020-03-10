@@ -1,4 +1,4 @@
-# Programmieren2 Sommersemester 2020
+# Programmieren 2 Sommersemester 2020
 
 Der Code aus der Vorlesung Programmieren 2 des Studiengangs Media Systems der Hochschule für Angewandte Wissenschaften Hamburgs wird hier hochgeladen. 
 
