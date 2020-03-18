@@ -45,12 +45,12 @@ public class GameFrame extends JFrame{
 	}
 
 
-	public void setBackground(Color color) {
+	public void setBackgroundColor(Color color) {
 		SwingUtilities.invokeLater(new Runnable() {
 			
 			@Override
 			public void run() {
-				panel.setBackground(color);
+				panel.setBackgroundColor(color);
 				repaint();
 			}
 		});

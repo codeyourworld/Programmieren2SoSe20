@@ -145,17 +145,26 @@ public class GameFrameWork {
 	 * @param blue value from 0 to 255
 	 */
 	public void setBackgroundColor(int red, int green, int blue) {
-		gameFrame.setBackground(new Color(red, green, blue));
+		gameFrame.setBackgroundColor(new Color(red, green, blue));
 	}
 
 	public void setBackgroundColor(Color color) {
-		gameFrame.setBackground(color);
+		gameFrame.setBackgroundColor(color);
+	}
+
+	/**
+	 * Draws a rectangle at the x, y coordinate with the width and height.
+	 * The rectangle has the color of the RGB values. If you change the coordinates the rectangle seems to move.
+	 * @param rectangle to draw
+	 */
+	public void addRectangle(Rectangle rectangle) {
+		gameShapes.add(rectangle);
 	}
 
 	
 	/**
 	 * Draws a rectangle at the x, y coordinate with the width and height.
-	 * The rectangle has the color of the RGB values
+	 * The rectangle has the color of the RGB values. It is not possible to change the coordinates afterwards.
 	 * @param x coordinate of the rectangle
 	 * @param y coordinate of the rectangle
 	 * @param width of the rectangle
@@ -170,7 +179,17 @@ public class GameFrameWork {
 
 	/**
 	 * Draws an oval at the x, y coordinate with the width and height.
-	 * The oval has the color of the RGB values
+	 * The oval has the color of the RGB values.  If you change the coordinates the oval seems to move.
+	 * @param oval to draw
+	 */
+	public void addOval(Oval oval) {
+		gameShapes.add(oval);
+	}
+
+	
+	/**
+	 * Draws an oval at the x, y coordinate with the width and height.
+	 * The oval has the color of the RGB values.  It is not possible to change the coordinates afterwards.
 	 * @param x coordinate of the oval
 	 * @param y coordinate of the oval
 	 * @param width of the oval
@@ -180,7 +199,7 @@ public class GameFrameWork {
 	 * @param blue value of the RGB color
 	 */
 	public void drawOval(int x, int y, int width, int height, int red, int green, int blue) {
-		gameShapes.add(new Circle(x, y, width, height, new Color(red, green, blue)));
+		gameShapes.add(new Oval(x, y, width, height, new Color(red, green, blue)));
 	}
 
 	/**
