@@ -21,11 +21,12 @@ public class GamePanel extends JPanel {
 	private LinkedList<Shape> gameShapes = new LinkedList<Shape>();
 	private LinkedList<IGameObject> gameObjects = new LinkedList<IGameObject>();
 	private LinkedList<Image> imageObjects = new LinkedList<Image>();
+	private LinkedList<Message> messages = new LinkedList<Message>();
 	private IBackground background = null;
 	private Image backgroundImage = null;
-	private Color backgroundColor;
+	private Color backgroundColor = Color.WHITE;
 	private Dimension dimension;
-	private String message = "";
+	private Message message;
 	private int textSize = 0;
 	private Color messageColor = Color.BLACK;
 	private int messageX = 0;
@@ -67,9 +68,11 @@ public class GamePanel extends JPanel {
 			}
 		}
 		
-		g2.setColor(messageColor);
-		g2.setFont(g2.getFont().deriveFont(Float.valueOf(textSize)));
-		g2.drawString(message, messageX, messageY);
+		for(Message message : messages) {
+			g2.setColor(message.getColor());
+			g2.setFont(g2.getFont().deriveFont(message.getTextSize()));
+			g2.drawString(message.getMessage(), message.getX(), message.getY());			
+		}
 	}
 
 	public void setGameObjects(LinkedList<IGameObject> gameObjects) {
@@ -100,17 +103,17 @@ public class GamePanel extends JPanel {
 		dimension = new Dimension(width, height);
 	}
 
-	public void showMessage(String message, int x, int y, int textSize, Color color) {
+	public void showMessage(Message message) {
 		this.message = message;
-		this.messageX = x;
-		this.messageY = y;
-		this.textSize = textSize;
-		this.messageColor = color;
 	}
 
 	public void setBackgroundColor(Color color) {
 		backgroundColor = color;
 		
+	}
+
+	public void setMessages(LinkedList<Message> messages) {
+		this.messages = messages; 
 	}
 
 }

@@ -118,12 +118,23 @@ public class GameFrame extends JFrame{
 		});
 	}
 
-	public void showMessage(String message, int x, int y, int textSize, Color color) {
+	public void showMessage(Message message) {
 		SwingUtilities.invokeLater(new Runnable() {
 			
 			@Override
 			public void run() {
-				panel.showMessage(message, x, y, textSize, color);
+				panel.showMessage(message);
+			}
+		});		
+	}
+
+
+	public void setMessages(LinkedList<Message> messages) {
+		SwingUtilities.invokeLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				panel.setMessages(messages);
 			}
 		});		
 	}
