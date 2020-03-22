@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
@@ -62,8 +63,17 @@ public class GamePanel extends JPanel {
 		synchronized (gameObjects) {
 			synchronized (imageObjects) {
 				for (int i = 0; i < imageObjects.size(); i++) {
-					g2.drawImage(imageObjects.get(i), gameObjects.get(i).getX(), gameObjects.get(i).getY(),
-							gameObjects.get(i).getWidth(), gameObjects.get(i).getHeight(), null);
+					if(gameObjects.get(i) instanceof IChangeableColor) {
+						BufferedImage bufImage = (BufferedImage) imageObjects.get(i);
+						g2.drawImage(((IChangeableColor) gameObjects.get(i)).getBufferedImage(), gameObjects.get(i).getX(), gameObjects.get(i).getY(),
+								gameObjects.get(i).getWidth(), gameObjects.get(i).getHeight(), null);
+						
+					} else {
+//						System.out.println("x: " + gameObjects.get(i).getX() + ", " + gameObjects.get(i).getWidth());
+						g2.drawImage(imageObjects.get(i), gameObjects.get(i).getX(), gameObjects.get(i).getY(),
+								gameObjects.get(i).getWidth(), gameObjects.get(i).getHeight(), null);
+						
+					}
 				}
 			}
 		}

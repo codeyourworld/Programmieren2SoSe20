@@ -1,3 +1,4 @@
+
 package view;
 
 import java.awt.Color;
@@ -36,19 +37,19 @@ import javax.imageio.ImageIO;
  * @version 1.0
  * @see IGameObject
  * @see Shape
- * @see IKeyboardInput
- * @see IMouseInput
- * @see ITickable
+ * @see IKeyboardListener
+ * @see IMouseListener
+ * @see ITickableListener
  * @see IBackground
  */
 public class GameFrameWork {
 	private GameFrame gameFrame;
-	private LinkedList<IKeyboardInput> keyInputs;
-	private LinkedList<IMouseInput> mouseInputs;
+	private LinkedList<IKeyboardListener> keyInputs;
+	private LinkedList<IMouseListener> mouseInputs;
 	private LinkedList<Shape> gameShapes;
 	private LinkedList<IGameObject> gameObjects;
 	private LinkedList<Image> imageObjects;
-	private LinkedList<ITickable> ticks;
+	private LinkedList<ITickableListener> ticks;
 	private LinkedList<Message> messages;
 	private int delay = 30;
 
@@ -90,7 +91,7 @@ public class GameFrameWork {
 
 			@Override
 			public void run() {
-				for (ITickable tickable : ticks) {
+				for (ITickableListener tickable : ticks) {
 					tickable.tick(delay);
 				}
 				gameFrame.update();
@@ -103,7 +104,7 @@ public class GameFrameWork {
 
 			@Override
 			public void keyReleased(KeyEvent event) {
-				for (IKeyboardInput keys : keyInputs) {
+				for (IKeyboardListener keys : keyInputs) {
 					for (int key : keys.getKeys()) {
 						if (event.getKeyCode() == key) {
 							keys.keyDown(key);
@@ -117,7 +118,7 @@ public class GameFrameWork {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				for (IMouseInput mouse : mouseInputs) {
+				for (IMouseListener mouse : mouseInputs) {
 					mouse.mouseClicked();
 				}
 
@@ -244,7 +245,7 @@ public class GameFrameWork {
 	 * 
 	 * @param mouseInput class to notify when a user clicks
 	 */
-	public void addIMouseInput(IMouseInput mouseInput) {
+	public void addIMouseInput(IMouseListener mouseInput) {
 		if (mouseInput != null) {
 			mouseInputs.add(mouseInput);
 		} else {
@@ -258,7 +259,7 @@ public class GameFrameWork {
 	 * 
 	 * @param mouseInput to remove from list
 	 */
-	public void removeIMouseInput(IMouseInput mouseInput) {
+	public void removeIMouseInput(IMouseListener mouseInput) {
 		if (mouseInput != null) {
 			mouseInputs.remove(mouseInput);
 		} else {
@@ -273,7 +274,7 @@ public class GameFrameWork {
 	 * 
 	 * @param keyInput class to notify when a user press a key
 	 */
-	public void addIKeyInput(IKeyboardInput keyInput) {
+	public void addIKeyInput(IKeyboardListener keyInput) {
 		if (keyInput != null) {
 			keyInputs.add(keyInput);
 		} else {
@@ -287,7 +288,7 @@ public class GameFrameWork {
 	 * 
 	 * @param keyInput class to remove from list
 	 */
-	public void removeIKeyboardInput(IKeyboardInput keyInput) {
+	public void removeIKeyboardInput(IKeyboardListener keyInput) {
 		if (keyInput != null) {
 			keyInputs.remove(keyInput);
 		} else {
@@ -301,7 +302,7 @@ public class GameFrameWork {
 	 * 
 	 * @param tickable class to notify at each timer tick
 	 */
-	public void addTick(ITickable tickable) throws NullPointerException {
+	public void addTick(ITickableListener tickable) throws NullPointerException {
 		if (tickable != null) {
 			ticks.add(tickable);
 		} else {
@@ -315,7 +316,7 @@ public class GameFrameWork {
 	 * 
 	 * @param tickable to remove from list
 	 */
-	public void removeTick(ITickable tickable) {
+	public void removeTick(ITickableListener tickable) {
 		if (tickable != null) {
 			ticks.remove(tickable);
 		} else {
@@ -342,20 +343,6 @@ public class GameFrameWork {
 
 	}
 
-//	/**
-//	 * Shows a message at a specific x, y coordinate. That message is displayed in the given color and text size.
-//	 * 
-//	 * @param message to show
-//	 * @param x coordinate of the message
-//	 * @param y coordinate of the message
-//	 * @param textSize of the message
-//	 * @param red value of the RGB color, from 0 to 255
-//	 * @param green value of the RGB color, from 0 to 255
-//	 * @param blue value of the RGB color, from 0 to 255
-//	 */
-//	public void showMessage(String message, int x, int y, int textSize, int red, int green, int blue) {
-//		gameFrame.showMessage(message, x, y, textSize, new Color(red, green, blue));
-//	}
 
 	/**
 	 * Shows a message at a specific x, y coordinate. That message is displayed in

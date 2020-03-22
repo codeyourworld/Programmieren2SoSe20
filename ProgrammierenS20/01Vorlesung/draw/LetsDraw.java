@@ -20,13 +20,13 @@ public class LetsDraw implements ITickable{
 	public void init() {
 		GameFrameWork gameFrameWork = new GameFrameWork();
 		gameFrameWork.setSize(1200, 1200);
-		gameFrameWork.setBackgroundColor(null);
+		gameFrameWork.setBackgroundColor(new Color(0, 180, 180));
 		gameFrameWork.addRectangle(rectangle);
-		Rectangle rectangle2 = new Rectangle(-30, 700, -200, -50, new Color(255, 255, 255));
+		Rectangle rectangle2 = new Rectangle(-30, 700, 200, 50, new Color(255, 255, 255));
 		gameFrameWork.addRectangle(rectangle2);
 		Oval oval = new Oval(200, 300, 100, 100, new Color(255, 255, 0));
 		gameFrameWork.addOval(oval);
-		gameFrameWork.addTick(null);
+		gameFrameWork.addTick(this);
 
 	}
 
