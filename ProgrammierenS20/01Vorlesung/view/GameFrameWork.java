@@ -329,7 +329,7 @@ public class GameFrameWork {
 	 * 
 	 * @param background to draw
 	 */
-	public void addBackground(IBackground background) {
+	public void setBackground(IBackground background) {
 		gameFrame.addBackground(background);
 	}
 
