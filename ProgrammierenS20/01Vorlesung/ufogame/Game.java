@@ -22,12 +22,13 @@ public class Game implements ITickableListener {
 	 */
 	public void init() {
 		frameWork.setSize(screenWidth, screenHeight);
-
-		ship = new Ship(screenWidth / 2, 4 * screenHeight / 5, screenWidth / 20, screenWidth / 20,
+		frameWork.setBackground(new Background("01Vorlesung\\assets\\space14.jpg"));
+		
+		ship = new Ship(screenWidth / 2, 4 * screenHeight / 5, screenWidth / 9, screenWidth / 9,
 				"01Vorlesung\\assets\\ship23.png");
 		frameWork.addGameObject(ship);
 
-		Ufo ufo = new Ufo(-20, screenHeight / 5, screenWidth / 10, screenWidth / 10, 1,
+		Ufo ufo = new Ufo(-20, screenHeight / 5, screenWidth / 10, screenWidth / 19, 1,
 				"01Vorlesung\\assets\\ufo20.png");
 		ufos.add(ufo);
 		frameWork.addGameObject(ufo);
@@ -44,7 +45,8 @@ public class Game implements ITickableListener {
 
 	public void shoot() {
 		// create a projectile
-		Projectile projectile = new Projectile(ship.getX(), ship.getY(), ship.getWidth() / 2, ship.getWidth() / 2, 3,
+		Projectile projectile = new Projectile(ship.getX() + ship.getWidth()/4, 
+				ship.getY() - ship.getWidth() / 2, ship.getWidth() / 2, ship.getWidth() / 2, 3,
 				"01Vorlesung\\assets\\projectile06.png");
 		projectiles.add(projectile);
 
