@@ -1,5 +1,7 @@
 package ufogame;
 
+import view.IGameObject;
+
 /**
  * Ship is an object which is centered at a specific coordinate. 
  * The position is defined by the x and y coordinate. The size is set with width and height.
@@ -8,7 +10,7 @@ package ufogame;
  * @author Stephi
  *
  */
-public class Ship {
+public class Ship implements IGameObject {
 	
 	private int x;
 	private int y;
@@ -46,7 +48,7 @@ public class Ship {
 	public int getWidth() {
 		return width;
 	}
-	public String getSprite() {
+	public String getImagePath() {
 		return sprite;
 	}
 	
