@@ -1,11 +1,13 @@
 package ufogame;
 
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import view.GameFrameWork;
+import view.IKeyboardListener;
 import view.ITickableListener;
 
-public class Game implements ITickableListener {
+public class Game implements ITickableListener, IKeyboardListener {
 
 	// Idea: we want to have multiple instances of an ufo and of a projectile
 	private ArrayList<Projectile> projectiles = new ArrayList<>();
@@ -40,6 +42,7 @@ public class Game implements ITickableListener {
 		}
 
 		frameWork.addTick(this);
+		frameWork.addIKeyInput(this);
 
 	}
 
@@ -83,6 +86,27 @@ public class Game implements ITickableListener {
 					ufos.get(0).getHeight(), ufos.get(0).getSpeed(), ufos.get(0).getImagePath()));
 			frameWork.addGameObject(ufos.get(ufos.size() - 1));
 		}
+		
+		for(Projectile p: projectiles) {
+            p.move();
+        }
+		
+		//TODO check size of list
+		if(projectiles.get(0).getY() < 0) {
+			frameWork.removeGameObject(projectiles.get(0));
+		}
+	}
+
+	@Override
+	public int[] getKeys() {
+		int [] keys = {KeyEvent.VK_SPACE};
+		return keys;
+	}
+
+	@Override
+	public void keyDown(int key) {
+		shoot();
+		
 	}
 
 }
