@@ -1,5 +1,7 @@
 package ufogame;
 
+import view.IGameObject;
+
 /**
  * Ufo is an object which moves from the upper left corner to the upper right corner. 
  * The position is defined by the x and y coordinate. The size is set with width and height.
@@ -9,7 +11,7 @@ package ufogame;
  * @author Stephi
  *
  */
-public class Ufo {
+public class Ufo implements IGameObject {
 
 	private int x;
 	private int y;
@@ -74,7 +76,7 @@ public class Ufo {
 		return speed;
 	}
 
-	public String getSprite() {
+	public String getImagePath() {
 		return sprite;
 	}
 	

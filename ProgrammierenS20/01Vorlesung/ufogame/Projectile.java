@@ -1,5 +1,7 @@
 package ufogame;
 
+import view.IGameObject;
+
 /**
  * Projectile is an object which moves from the start point to the top edge. 
  * The position is defined by the x and y coordinate. The size is set with width and height.
@@ -9,7 +11,7 @@ package ufogame;
  * @author Stephi
  *
  */
-public class Projectile {
+public class Projectile implements IGameObject {
 
 	private int x;
 	private int y;
@@ -67,7 +69,7 @@ public class Projectile {
 		return height;
 	}
 
-	public String getSprite() {
+	public String getImagePath() {
 		return sprite;
 	}
 	
