@@ -3,11 +3,11 @@ package draw;
 import java.awt.Color;
 
 import view.GameFrameWork;
-import view.ITickable;
+import view.ITickableListener;
 import view.Oval;
 import view.Rectangle;
 
-public class LetsDraw implements ITickable{
+public class LetsDraw implements ITickableListener{
 
 	private Rectangle rectangle = new Rectangle(100, 200, 200, 150, new Color(0, 0, 0));
 
@@ -19,8 +19,9 @@ public class LetsDraw implements ITickable{
 
 	public void init() {
 		GameFrameWork gameFrameWork = new GameFrameWork();
-		gameFrameWork.setSize(1200, 1200);
+		gameFrameWork.setSize(1200, 960);
 		gameFrameWork.setBackgroundColor(new Color(0, 180, 180));
+		gameFrameWork.setBackground(null);
 		gameFrameWork.addRectangle(rectangle);
 		Rectangle rectangle2 = new Rectangle(-30, 700, 200, 50, new Color(255, 255, 255));
 		gameFrameWork.addRectangle(rectangle2);
