@@ -51,12 +51,10 @@ public class GameFrameWork {
 	private LinkedList<Image> imageObjects;
 	private LinkedList<ITickableListener> ticks;
 	private LinkedList<Message> messages;
-	private int delay = 30;
+	private int delay = 16;
+	private long time = 0;
 
-	public static void main(String[] args) {
-		new GameFrameWork();
-	}
-
+	
 	/**
 	 * Creates an white window of the size 400x400 pixels. If you want to have a
 	 * bigger window use the setSize(int x, int y) method.
@@ -91,14 +89,19 @@ public class GameFrameWork {
 
 			@Override
 			public void run() {
+				long offset = System.currentTimeMillis()-time;				
+				time = System.currentTimeMillis();
+//				System.out.println(offset);
 				for (ITickableListener tickable : ticks) {
-					tickable.tick(delay);
+					tickable.tick(offset);
+					
 				}
 				gameFrame.update();
+				
 			}
 		};
 		Timer timer = new Timer();
-		timer.schedule(timerTask, 50, delay);
+		timer.schedule(timerTask, 30, delay);
 
 		gameFrame.addKeyListener(new KeyAdapter() {
 
@@ -355,4 +358,13 @@ public class GameFrameWork {
 		messages.add(message);
 	}
 
+	public void removeMessage(Message message) {
+		messages.remove(message);
+	}
+
+	//TODO camera sight
+	public void setCamera(Camera camera) {
+		gameFrame.setCamera(camera);
+	}
+	
 }
