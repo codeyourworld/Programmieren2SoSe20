@@ -118,15 +118,6 @@ public class GameFrame extends JFrame{
 		});
 	}
 
-	public void showMessage(Message message) {
-		SwingUtilities.invokeLater(new Runnable() {
-			
-			@Override
-			public void run() {
-				panel.showMessage(message);
-			}
-		});		
-	}
 
 
 	public void setMessages(LinkedList<Message> messages) {
@@ -135,6 +126,17 @@ public class GameFrame extends JFrame{
 			@Override
 			public void run() {
 				panel.setMessages(messages);
+			}
+		});		
+	}
+
+
+	public void setCamera(Camera camera) {
+		SwingUtilities.invokeLater(new Runnable() {
+			
+			@Override
+			public void run() {
+//				panel.setCamera(camera);
 			}
 		});		
 	}
