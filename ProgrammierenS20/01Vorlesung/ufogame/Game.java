@@ -92,9 +92,7 @@ public class Game implements ITickableListener, IKeyboardListener {
         }
 		
 		//TODO check size of list
-		if(projectiles.get(0).getY() < 0) {
-			frameWork.removeGameObject(projectiles.get(0));
-		}
+//			frameWork.removeGameObject(projectiles.get(0));
 	}
 
 	@Override
