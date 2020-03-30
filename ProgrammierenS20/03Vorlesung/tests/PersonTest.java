@@ -8,7 +8,13 @@ class PersonTest {
 
 	@Test
 	void test() {
-		fail("Not yet implemented");
+		Person person = new Person("Tom", "Böhmermann");
+		String firstName = "Jan";
+		
+		person.setFirstName(firstName);		
+		assertEquals(firstName, person.getFirstName());
+		
+		assertNotEquals("Tom", person.getFirstName());
 	}
 
 }
