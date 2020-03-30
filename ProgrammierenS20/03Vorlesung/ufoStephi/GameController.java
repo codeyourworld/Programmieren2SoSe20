@@ -43,9 +43,9 @@ public class GameController implements ITickableListener, IKeyboardListener {
 		controller.setBackground(background);
 		controller.addTick(this);
 		controller.addIKeyInput(this);
-		controller.addMessage(message);
 		message = new Message(counter + " / " + badShoot, screenWidth - 200, screenHeight - 100, 30,
 				new Color(255, 255, 255));
+		controller.addMessage(message);
 	}
 
 	protected boolean isCollided(IGameObject objA, IGameObject objB) {
@@ -117,14 +117,14 @@ public class GameController implements ITickableListener, IKeyboardListener {
 					ufos.remove(ufo);
 					addUfo();
 					levelChanger();
-					
+					break;
 				}
 			}
 			for (ProjectileObj projectile : projectiles) {
 				if (projectile.isCollided()) {
 					controller.removeGameObject(projectile);
 					projectiles.remove(projectile);
-					
+					break;
 				}
 			}
 			collisionTimer = 0;
