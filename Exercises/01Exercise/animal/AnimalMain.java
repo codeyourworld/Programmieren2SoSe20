@@ -15,8 +15,13 @@ public class AnimalMain {
 		animals.add(new CommonBlackBird(true, true));
 		animals.add(new CommonBlackBird(false, true));
 		animals.add(new CommonBlackBird(false, false));
+		animals.add(new JellyFish(34.82f));
+		animals.add(new JellyFish(3.82f));
 		
 		for (Animal animal : animals) {
+			if(animal instanceof ISound) {
+				((ISound)animal).makeSound();
+			}
 			System.out.println(animal + "\n" + animal.getFeed() + "\n");
 		}
 	}

@@ -1,6 +1,6 @@
 package animal;
 
-public class CommonBlackBird extends Animal {
+public class CommonBlackBird extends Animal implements ISound{
 
 	private boolean isDay;
 	private boolean insectsAvailable;
@@ -24,6 +24,11 @@ public class CommonBlackBird extends Animal {
 		return food;
 	}
 
+	@Override
+	public void makeSound() {
+		System.out.println("tweet");
+	}
+	
 	@Override
 	public String toString() {
 		return "CommonBlackBird [isDay=" + isDay + ", insectsAvailable=" + insectsAvailable + "]";
