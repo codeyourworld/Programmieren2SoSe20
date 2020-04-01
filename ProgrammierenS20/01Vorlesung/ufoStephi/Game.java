@@ -29,7 +29,7 @@ public class Game implements ITickableListener, IKeyboardListener {
 	private int screenWidth = 1700;
 	private int screenHeight = 900;
 	private GameFrameWork view = new GameFrameWork();
-	private BackgroundSprite background;
+	private Background background;
 	private int counter = 0;
 	private int targetMissed = 0;
 	private boolean gameOver = false;
@@ -49,7 +49,7 @@ public class Game implements ITickableListener, IKeyboardListener {
 		this.screenWidth = screenWidth;
 
 		//create all game objects and the background image
-		background = new BackgroundSprite("01Vorlesung\\assets\\space14.jpg");
+		background = new Background("01Vorlesung\\assets\\space14.jpg");
 		ship = new Ship(screenWidth / 2, 3 * screenHeight / 4, screenHeight / 10, screenHeight / 9,
 				"01Vorlesung\\assets\\ship23.png");
 
