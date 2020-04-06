@@ -1,5 +1,7 @@
 package email;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class EmailMain {
 
@@ -27,7 +29,7 @@ public class EmailMain {
 		emails[18] = new Email("Nachbarschaftshilfe", "Hey Laura,\nwollen 00:34:45wir mal Werbung für unsere Nachbarschaftshilfe machen? Können ja mal nachher drüber quatschen. Wann treffen wir uns eigentlich?");
 		emails[19] = new Email("Bla", "Test, bla, test, huhu, was geht, was geht Digga?");
 
-
+		
 	}
 	
 	
