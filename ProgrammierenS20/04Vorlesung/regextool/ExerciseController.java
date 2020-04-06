@@ -124,23 +124,23 @@ public class ExerciseController {
 		exercises.add(new Exercise(Exercise.BEGINNER, text, goodWords, badWords));
 	}
 
-	private void loadExercises14() {
+	private void loadExercises15() {
 		ArrayList<Word> goodWords = new ArrayList<Word>();
 		goodWords.add(new Word("Was geht?"));
-		goodWords.add(new Word("42"));
+		goodWords.add(new Word("4 + 2 = 10"));
 		goodWords.add(new Word("89"));
 		goodWords.add(new Word("1987"));
-		goodWords.add(new Word("7"));
-		goodWords.add(new Word("12345"));
+		goodWords.add(new Word(""));
+		goodWords.add(new Word("gut gemacht!"));
 
 		ArrayList<Word> badWords = new ArrayList<Word>();
-		badWords.add(new Word("laut"));
+		badWords.add(new Word("WasGeht?"));
 		badWords.add(new Word("huhu"));
-		badWords.add(new Word("au f"));
+		badWords.add(new Word("auf"));
 		badWords.add(new Word("WTF!!"));
 		badWords.add(new Word("#####"));
 		badWords.add(new Word("Y/N?"));
-		badWords.add(new Word("OH NO"));
+		badWords.add(new Word("OHNO"));
 
 		String text = "Filtert nach Ausdrücken, die ein Whitespace (Leertaste, Zeilenumbruch, Tab) enthalten. "
 				+ "In Grün sind die Wörter aufgeführt, die ihr filtern solltet. In Rot sind Wörter aufgeführt, die ihr nicht filtern solltet.";
