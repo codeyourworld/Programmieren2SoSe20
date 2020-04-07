@@ -3,18 +3,26 @@ package regextool;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Stream;
 
 public class RegexChecker {
 
 	
-	public void checkWords(String pattern, List<Word> goodWords, List<Word> badWords) {
+	public boolean checkWords(String pattern, List<Word> goodWords, List<Word> badWords) {
 		Pattern p = Pattern.compile(pattern);
-		checkList(goodWords, p);
-		checkList(badWords, p);
+		
+		boolean retVal = true;
+		if(checkList(goodWords, p) < goodWords.size()) {
+			retVal = false;
+		}
+		if(checkList(badWords, p) > 0) {
+			retVal = false;
+		}
+		
+		return retVal;
 	}
 
-	private void checkList(List<Word> list, Pattern p) {
+	private int checkList(List<Word> list, Pattern p) {
+		int numberFind = 0;
 		for(Word word : list) {
 			Matcher matcher = p.matcher(word.getWord());
 			try {
@@ -28,13 +36,16 @@ public class RegexChecker {
 						words[i] = true;
 					}
 					word.setIsMatched(words);
-					
+					if(start == 0 && end == word.getWord().length()) {
+						numberFind++;
+					}
 				}
 				
 			} catch (Exception e) {
 				System.out.println("There was no match for word " + word.getWord() + " with the pattern " + p);
 			}
 		}
+		return numberFind;
 	}
 	
 }
