@@ -16,7 +16,7 @@ public class ExerciseController {
 
 	private RegexChecker regexChecker = new RegexChecker();
 	private ArrayList<Exercise> exercises;
-	private int level = Exercise.MIDDLE;
+	private int level = Exercise.BEGINNER;
 
 	public void init() {
 		exercises = SaveStatus.readStatus();
