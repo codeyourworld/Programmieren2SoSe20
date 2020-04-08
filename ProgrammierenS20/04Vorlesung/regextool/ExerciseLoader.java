@@ -5,7 +5,23 @@ import java.util.ArrayList;
 public class ExerciseLoader {
 
 	private ArrayList<Exercise> exercises = new ArrayList<Exercise>();
-
+	private static final String HINT_SMALL_LETTERS = "Mit [a-z] kann man sagen, dass nur Kleinbuchstaben akteptiert sind.";
+	private static final String HINT_SMALL_LETTERS_RED = "Mit [b-u] kann man sagen, dass nur kleine Buchstaben von b bis u akteptiert sind.";
+	private static final String HINT_PLUS = "Mit [e]+ kann man sagen, dass man mindestens 1 e bis beliebig viele e haben möchte.";
+	private static final String HINT_BEGINN = "Mit \"^a\" kann man sagen, dass ein String mit einem a beginnen soll.";
+	private static final String HINT_END = "Mit \"a$\" kann man sagen, dass ein String mit einem a enden soll.";
+	private static final String HINT_ANY_CHAR = "Mit . kann man sagen, dass man jedes Zeichen erlaubt. z.B. \"o\" oder \"?\" oder \"2\"";
+	private static final String HINT_STAR = "Mit dem Sternchen (z.B. e*) kann man sagen, dass man ein Zeichen 0 Mal bis beliebig oft erlaubt ist. Z.B. eeeeee";
+	private static final String HINT_WORD = "Soll bestimmte Zeichen wie z.B. \"nie\" in einem Wort enthalten sein, schreibt man \"nie\" in den reguären Ausdruck.";
+	private static final String HINT_NUMBERS = "Mit \\d kann man sagen, dass nur Zahlen akteptiert sind. Das gleiche sagt man auch mit [0-9]";
+	private static final String HINT_LETTERS_NUM = "Mit [a-e0-3] kann man sagen, dass Kleinbuchstaben von a bis e und Zahlen von 0-3 akteptiert sind. ";
+	private static final String HINT_LETTERS_UL = "Mit [a-eA-F] kann man sagen, dass Kleinbuchstaben von a bis e und Großbuchstaben von A bis F akteptiert sind. ";
+	private static final String HINT_WHITE_SPACE = "Mit \\s kann man sagen, dass Whitespace also \\n oder \\t oder Leertaste akteptiert sind. ";
+	private static final String HINT_SPECIAL = "Mit [.] oder \\. kann man sagen, dass wir einen Punkt akteptiert sind. Wenn ein Zeichen wie ein Punkt eine spezielle Bedeutung hat wie . oder + oder ?, dann muss man das auf diese Weise schreiben";
+	private static final String HINT_NUM_TIMES = "Mit e{2} oder e{6,10} oder e{1,} kann man sagen, ob z.B. ein \"e\" exakt 2 mal auftauchen solle{2}, mindestens 6 Mal aber maximal 10 Mal e{6,10} oder mindestens einmal e{1,}.";
+	private static final String HINT_OR = "Mit (a)|(b) kann man sagen, dass entweder a oder b akteptiert wird. ";
+	
+	
 	public ArrayList<Exercise> load() {
 
 		loadExercises01();
@@ -26,9 +42,9 @@ public class ExerciseLoader {
 		loadExercises56();
 		loadExercises57();
 
-		loadExercises61();
 		loadExercises62();
 		loadExercises63();
+		loadExercises61();
 		return exercises;
 	}
 
@@ -55,7 +71,14 @@ public class ExerciseLoader {
 
 		String text = "Filtert nach Wörtern, die ein \"auf\" enthalten. "
 				+ "In Grün sind die Wörter aufgeführt, die ihr filtern solltet. In Rot sind Wörter aufgeführt, die ihr nicht filtern solltet.";
-		exercises.add(new Exercise(Exercise.BEGINNER, text, goodWords, badWords));
+
+		
+		Exercise exercise = new Exercise(Exercise.BEGINNER, text, goodWords, badWords);
+		exercise.addHints(HINT_WORD);
+		exercise.addHints(HINT_ANY_CHAR);
+		exercise.addHints(HINT_STAR);		
+		exercises.add(exercise);
+
 	}
 
 	private void loadExercises02() {
@@ -79,7 +102,11 @@ public class ExerciseLoader {
 
 		String text = "Filtert nach Wörtern, die Kleinbuchstaben enthalten. "
 				+ "In Grün sind die Wörter aufgeführt, die ihr filtern solltet. In Rot sind Wörter aufgeführt, die ihr nicht filtern solltet.";
-		exercises.add(new Exercise(Exercise.BEGINNER, text, goodWords, badWords));
+		Exercise exercise = new Exercise(Exercise.BEGINNER, text, goodWords, badWords);
+		exercise.addHints(HINT_SMALL_LETTERS);
+		exercise.addHints(HINT_ANY_CHAR);
+		exercise.addHints(HINT_STAR);		
+		exercises.add(exercise);
 	}
 
 	private void loadExercises03() {
@@ -102,7 +129,10 @@ public class ExerciseLoader {
 
 		String text = "Filtert nach Ausdrücken, die Zahlen enthalten. "
 				+ "In Grün sind die Wörter aufgeführt, die ihr filtern solltet. In Rot sind Wörter aufgeführt, die ihr nicht filtern solltet.";
-		exercises.add(new Exercise(Exercise.BEGINNER, text, goodWords, badWords));
+		Exercise exercise = new Exercise(Exercise.BEGINNER, text, goodWords, badWords);
+		exercise.addHints(HINT_NUMBERS);
+		exercise.addHints(HINT_PLUS);		
+		exercises.add(exercise);
 	}
 
 	private void loadExercises04() {
@@ -125,7 +155,10 @@ public class ExerciseLoader {
 
 		String text = "Filtert nach Ausdrücken, die sowohl Klein- als auch Großbuchstauben enthalten. "
 				+ "In Grün sind die Wörter aufgeführt, die ihr filtern solltet. In Rot sind Wörter aufgeführt, die ihr nicht filtern solltet.";
-		exercises.add(new Exercise(Exercise.BEGINNER, text, goodWords, badWords));
+		Exercise exercise = new Exercise(Exercise.BEGINNER, text, goodWords, badWords);
+		exercise.addHints(HINT_LETTERS_UL);
+		exercise.addHints(HINT_PLUS);		
+		exercises.add(exercise);
 	}
 
 	private void loadExercises11() {
@@ -147,7 +180,11 @@ public class ExerciseLoader {
 
 		String text = "Filtert nach Ausdrücken, die ein Whitespace (Leertaste, Zeilenumbruch, Tab) enthalten. "
 				+ "In Grün sind die Wörter aufgeführt, die ihr filtern solltet. In Rot sind Wörter aufgeführt, die ihr nicht filtern solltet.";
-		exercises.add(new Exercise(Exercise.MIDDLE, text, goodWords, badWords));
+		Exercise exercise = new Exercise(Exercise.MIDDLE, text, goodWords, badWords);
+		exercise.addHints(HINT_WHITE_SPACE);
+		exercise.addHints(HINT_ANY_CHAR);		
+		exercise.addHints(HINT_PLUS);		
+		exercises.add(exercise);
 	}
 
 	private void loadExercises12() {
@@ -169,12 +206,13 @@ public class ExerciseLoader {
 
 		String text = "Filtert nach Wörtern, die nur aus Kleinbuchstaben von a - n bestehen. "
 				+ "\nIn Grün sind die Wörter aufgeführt, die ihr filtern solltet. In Rot sind Wörter aufgeführt, die ihr nicht filtern solltet.";
+
 		Exercise exercise = new Exercise(Exercise.MIDDLE, text, goodWords, badWords);
-		exercise.addHints("Mit [a-z] kann man sagen, dass nur Kleinbuchstaben akteptiert sind.");
-		exercise.addHints("Mit [b-u] kann man sagen, dass nur kleine Buchstaben von b bis u akteptiert sind.");
-		exercise.addHints("Mit [e]+ kann man sagen, dass man mindestens 1 e bis beliebig viele e haben möchte.");
-		exercise.addHints("Mit \"^a\" kann man sagen, dass ein String mit einem a beginnen soll.");
-		exercise.addHints("Mit \"a$\" kann man sagen, dass ein String mit einem a enden soll.");
+		exercise.addHints(HINT_SMALL_LETTERS);
+		exercise.addHints(HINT_SMALL_LETTERS_RED);		
+		exercise.addHints(HINT_PLUS);		
+		exercise.addHints(HINT_BEGINN);		
+		exercise.addHints(HINT_END);		
 		exercises.add(exercise);
 
 	}
@@ -196,7 +234,12 @@ public class ExerciseLoader {
 
 		String text = "Filtert nach Ausdrücken, die mit 1-2 Zahlen bestehen, gefolgt von 1-2 Zahlen, gefolgt von 2-4 Zahlen."
 				+ "\nIn Grün sind die Wörter aufgeführt, die ihr filtern solltet. In Rot sind Wörter aufgeführt, die ihr nicht filtern solltet.";
-		exercises.add(new Exercise(Exercise.MIDDLE, text, goodWords, badWords));
+
+		Exercise exercise = new Exercise(Exercise.MIDDLE, text, goodWords, badWords);
+		exercise.addHints(HINT_NUMBERS);
+		exercise.addHints(HINT_SPECIAL);		
+		exercise.addHints(HINT_NUM_TIMES);		
+		exercises.add(exercise);
 	}
 
 	private void loadExercises14() {
@@ -219,7 +262,17 @@ public class ExerciseLoader {
 
 		String text = "Filtert nach Ausdrücken, die mit www. beginnen und mit .de aufhören. Dazwischen dürfen nur Groß- und Kleinbuchstaben sowie Zahlen stehen. "
 				+ "\nIn Grün sind die Wörter aufgeführt, die ihr filtern solltet. In Rot sind Wörter aufgeführt, die ihr nicht filtern solltet.";
-		exercises.add(new Exercise(Exercise.MIDDLE, text, goodWords, badWords));
+
+		Exercise exercise = new Exercise(Exercise.MIDDLE, text, goodWords, badWords);
+		exercise.addHints(HINT_WORD);
+		exercise.addHints(HINT_SPECIAL);		
+		exercise.addHints(HINT_LETTERS_NUM);
+		exercise.addHints(HINT_SPECIAL);		
+		exercise.addHints(HINT_NUM_TIMES);		
+		exercise.addHints(HINT_BEGINN);		
+		exercise.addHints(HINT_END);		
+
+		exercises.add(exercise);
 	}
 
 	private void loadExercises51() {
@@ -229,7 +282,7 @@ public class ExerciseLoader {
 		goodWords.add(new Word("saß"));
 		goodWords.add(new Word("sitzen"));
 		goodWords.add(new Word("Sessel"));
-		goodWords.add(new Word("aussingen"));
+		goodWords.add(new Word("singen"));
 		goodWords.add(new Word("sammeln"));
 		goodWords.add(new Word("suchen"));
 		goodWords.add(new Word("sagen"));
@@ -248,7 +301,15 @@ public class ExerciseLoader {
 		String text = "Filtert nach Wörtern, die mit s oder S beginnen, aber nicht mit s aufhören. "
 				+ "Diese Wörter dürfen nur aus Buchstaben bestehen und haben ab dem 2. Buchstaben nur kleine Buchstaben. "
 				+ "In Grün sind die Wörter aufgeführt, die ihr filtern solltet. In Rot sind Wörter aufgeführt, die ihr nicht filtern solltet.";
-		exercises.add(new Exercise(Exercise.ADVANCED, text, goodWords, badWords));
+
+		Exercise exercise = new Exercise(Exercise.ADVANCED, text, goodWords, badWords);
+		exercise.addHints(HINT_SMALL_LETTERS);		
+		exercise.addHints(HINT_LETTERS_NUM);
+		exercise.addHints(HINT_STAR);	
+		exercise.addHints(HINT_BEGINN);		
+		exercise.addHints(HINT_END);		
+
+		exercises.add(exercise);
 	}
 
 	private void loadExercises52() {
@@ -271,7 +332,17 @@ public class ExerciseLoader {
 				+ "Ab dem 2. Buchstaben dürfen nur kleine Buchstaben. Der erste Buchstabe darf kleingeschrieben sein. "
 				+ "Es dürfen keine zwei Leerzeichen aufeinander folgen. "
 				+ "In Grün sind die Wörter aufgeführt, die ihr filtern solltet. In Rot sind Wörter aufgeführt, die ihr nicht filtern solltet.";
-		exercises.add(new Exercise(Exercise.ADVANCED, text, goodWords, badWords));
+
+		Exercise exercise = new Exercise(Exercise.ADVANCED, text, goodWords, badWords);
+		exercise.addHints(HINT_SMALL_LETTERS);		
+		exercise.addHints(HINT_LETTERS_NUM);
+		exercise.addHints(HINT_STAR);		
+		exercise.addHints(HINT_WHITE_SPACE);
+		exercise.addHints(HINT_BEGINN);		
+		exercise.addHints(HINT_END);		
+
+		exercises.add(exercise);
+
 	}
 
 	private void loadExercises53() {
@@ -296,7 +367,15 @@ public class ExerciseLoader {
 		String text = "Filtert nach Wörtern, die mit a, A, B, b, c, C, d oder D beginnen und mit n aufhören. "
 				+ "Diese Wörter dürfen nur aus Buchstaben bestehen und haben ab dem 2. Buchstaben nur kleine Buchstaben."
 				+ "In Grün sind die Wörter aufgeführt, die ihr filtern solltet. In Rot sind Wörter aufgeführt, die ihr nicht filtern solltet.";
-		exercises.add(new Exercise(Exercise.ADVANCED, text, goodWords, badWords));
+
+		Exercise exercise = new Exercise(Exercise.ADVANCED, text, goodWords, badWords);
+		exercise.addHints(HINT_SMALL_LETTERS);		
+		exercise.addHints(HINT_LETTERS_UL);
+		exercise.addHints(HINT_STAR);	
+		exercise.addHints(HINT_BEGINN);		
+		exercise.addHints(HINT_END);		
+
+		exercises.add(exercise);
 	}
 
 	private void loadExercises54() {
@@ -324,7 +403,15 @@ public class ExerciseLoader {
 		String text = "Filtert nach Wörtern, die mit a oder A beginnen und ein n im Wort haben. "
 				+ "Diese Wörter dürfen nur aus Buchstaben bestehen und haben ab dem 2. Buchstaben nur kleine Buchstaben. "
 				+ "In Grün sind die Wörter aufgeführt, die ihr filtern solltet. In Rot sind Wörter aufgeführt, die ihr nicht filtern solltet.";
-		exercises.add(new Exercise(Exercise.ADVANCED, text, goodWords, badWords));
+
+		Exercise exercise = new Exercise(Exercise.ADVANCED, text, goodWords, badWords);
+		exercise.addHints(HINT_SMALL_LETTERS);		
+		exercise.addHints(HINT_LETTERS_UL);
+		exercise.addHints(HINT_STAR);				
+		exercise.addHints(HINT_BEGINN);		
+		exercise.addHints(HINT_END);		
+
+		exercises.add(exercise);
 	}
 
 	private void loadExercises55() {
@@ -350,7 +437,15 @@ public class ExerciseLoader {
 				+ "gültige Uhrzeiten stehen können. In so einer Zeile können Zahlen, Buchstaben, "
 				+ "Leerzeichen, Doppelpunkte, Satzzeichen auftreten. " + "Ihr sollt die komplette Zeile filtern."
 				+ "In Grün sind die Zeilen aufgeführt, die ihr filtern solltet. In Rot sind Zeilen aufgeführt, die ihr nicht filtern solltet.";
-		exercises.add(new Exercise(Exercise.ADVANCED, text, goodWords, badWords));
+
+		Exercise exercise = new Exercise(Exercise.ADVANCED, text, goodWords, badWords);
+		exercise.addHints(HINT_OR);		
+		exercise.addHints(HINT_SPECIAL);		
+		exercise.addHints(HINT_ANY_CHAR);
+		exercise.addHints(HINT_STAR);		
+		exercise.addHints(HINT_BEGINN);		
+		exercise.addHints(HINT_END);		
+		exercises.add(exercise);
 	}
 
 	private void loadExercises56() {
@@ -378,7 +473,14 @@ public class ExerciseLoader {
 				+ "ob angegebene Email-Adressen diesem Schema folgen. "
 				+ "In Grün sind die Wörter aufgeführt, die ihr filtern solltet. "
 				+ "In Rot sind Wörter aufgeführt, die ihr nicht filtern solltet.";
-		exercises.add(new Exercise(Exercise.ADVANCED, text, goodWords, badWords));
+
+		Exercise exercise = new Exercise(Exercise.ADVANCED, text, goodWords, badWords);
+		exercise.addHints(HINT_SPECIAL);		
+		exercise.addHints(HINT_ANY_CHAR);
+		exercise.addHints(HINT_STAR);		
+		exercise.addHints(HINT_BEGINN);		
+		exercise.addHints(HINT_END);		
+		exercises.add(exercise);
 	}
 
 	private void loadExercises57() {
@@ -396,23 +498,28 @@ public class ExerciseLoader {
 		badWords.add(new Word("01.01.9"));
 		badWords.add(new Word("01.01.199"));
 		badWords.add(new Word("z9.07.69"));
-		badWords.add(new Word("23.1.81"));
-		badWords.add(new Word("9.9.99"));
+		badWords.add(new Word("23.132.81"));
 
 		String text = "Filtert nach Ausdrücken, die mit 1-2 Zahlen bestehen, gefolgt von 1-2 Zahlen, gefolgt von 2 oder 4 Zahlen."
 				+ "In Grün sind die Wörter aufgeführt, die ihr filtern solltet. "
 				+ "In Rot sind Wörter aufgeführt, die ihr nicht filtern solltet.";
-		exercises.add(new Exercise(Exercise.ADVANCED, text, goodWords, badWords));
+
+		Exercise exercise = new Exercise(Exercise.ADVANCED, text, goodWords, badWords);
+		exercise.addHints(HINT_NUM_TIMES);		
+		exercise.addHints(HINT_SPECIAL);		
+		exercise.addHints(HINT_BEGINN);		
+		exercise.addHints(HINT_END);		
+		exercises.add(exercise);
 	}
 
 	private void loadExercises61() {
 
 		ArrayList<Word> goodWords = new ArrayList<Word>();
-		goodWords.add(new Word("1.1.2000"));
+		goodWords.add(new Word("30.04.2000"));
 		goodWords.add(new Word("23.12.1999"));
 		goodWords.add(new Word("31.01.2010"));
 		goodWords.add(new Word("31.10.1930"));
-		goodWords.add(new Word("5.7.1959"));
+		goodWords.add(new Word("05.07.1959"));
 		goodWords.add(new Word("28.02.1999"));
 
 		ArrayList<Word> badWords = new ArrayList<Word>();
@@ -426,7 +533,14 @@ public class ExerciseLoader {
 		String text = "Filtert nach Ausdrücken, die ein richtiges Datum enthalten. Das Jahr soll dabei 4-stellig sein"
 				+ "In Grün sind die Wörter aufgeführt, die ihr filtern solltet. "
 				+ "In Rot sind Wörter aufgeführt, die ihr nicht filtern solltet.";
-		exercises.add(new Exercise(Exercise.CHUCK_NORRIS, text, goodWords, badWords));
+
+		Exercise exercise = new Exercise(Exercise.CHUCK_NORRIS, text, goodWords, badWords);
+		exercise.addHints(HINT_NUM_TIMES);		
+		exercise.addHints(HINT_OR);		
+		exercise.addHints(HINT_SPECIAL);		
+		exercise.addHints(HINT_BEGINN);		
+		exercise.addHints(HINT_END);		
+		exercises.add(exercise);
 	}
 
 	private void loadExercises62() {
@@ -451,7 +565,16 @@ public class ExerciseLoader {
 		String text = "Filtert, ob der Ausdruck ein gültiger Identifier(Bezeichner/Variablenname) ist. Gültig ist der Name, wenn er mit einem Buchstaben, $ oder _ beginnt. Die folgenden Zeichen können Buchstaben, Zahlen, _ und $ sein."
 				+ "In Grün sind die Wörter aufgeführt, die ihr filtern solltet. "
 				+ "In Rot sind Wörter aufgeführt, die ihr nicht filtern solltet.";
-		exercises.add(new Exercise(Exercise.CHUCK_NORRIS, text, goodWords, badWords));
+		Exercise exercise = new Exercise(Exercise.CHUCK_NORRIS, text, goodWords, badWords);
+		exercise.addHints(HINT_SPECIAL);		
+		exercise.addHints(HINT_NUM_TIMES);		
+		exercise.addHints(HINT_OR);		
+		exercise.addHints(HINT_WORD);				
+		exercise.addHints(HINT_PLUS);				
+		exercise.addHints(HINT_STAR);				
+		exercise.addHints(HINT_BEGINN);		
+		exercise.addHints(HINT_END);		
+		exercises.add(exercise);
 	}
 
 	private void loadExercises63() {
@@ -466,18 +589,27 @@ public class ExerciseLoader {
 		goodWords.add(new Word("boolean\tRECT_1;"));
 
 		ArrayList<Word> badWords = new ArrayList<Word>();
-		goodWords.add(new Word("bool $test4;"));
-		goodWords.add(new Word("Test3 = true;"));
-		goodWords.add(new Word("boolean test2=;"));
-		goodWords.add(new Word("boolean _test1 =false"));
-		goodWords.add(new Word("boolean test true;"));
-		goodWords.add(new Word("boolean NUM_RECTS $;"));
-		goodWords.add(new Word("boolean a RECT_1;"));
+		badWords.add(new Word("bool $test4;"));
+		badWords.add(new Word("Test3 = true;"));
+		badWords.add(new Word("boolean test2=;"));
+		badWords.add(new Word("boolean _test1 =false"));
+		badWords.add(new Word("boolean test true;"));
+		badWords.add(new Word("boolean NUM_RECTS $;"));
+		badWords.add(new Word("boolean a RECT_1;"));
 
 		String text = "Erweitert eure Aufgabe und prüft, ob eine boolean Variable richtig deklariert wurde. Zwischen dem Datentyp und dem Variablennamen etc. muss mindestens ein Whitespace. Damit darf auch ein Zeilenumbruch stehen."
 				+ "In Grün sind die Wörter aufgeführt, die ihr filtern solltet. "
 				+ "In Rot sind Wörter aufgeführt, die ihr nicht filtern solltet.";
-		exercises.add(new Exercise(Exercise.CHUCK_NORRIS, text, goodWords, badWords));
+		Exercise exercise = new Exercise(Exercise.CHUCK_NORRIS, text, goodWords, badWords);
+		exercise.addHints(HINT_SPECIAL);		
+		exercise.addHints(HINT_NUM_TIMES);		
+		exercise.addHints(HINT_OR);		
+		exercise.addHints(HINT_WORD);				
+		exercise.addHints(HINT_PLUS);				
+		exercise.addHints(HINT_STAR);				
+		exercise.addHints(HINT_BEGINN);		
+		exercise.addHints(HINT_END);		
+		exercises.add(exercise);
 	}
 
 }

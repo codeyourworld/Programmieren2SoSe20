@@ -19,10 +19,13 @@ public class ExerciseController {
 	private int level = Exercise.MIDDLE;
 
 	public void init() {
-		ExerciseLoader loader = new ExerciseLoader();
-		exercises = loader.load();
+		exercises = SaveStatus.readStatus();
+		if(exercises == null || exercises.size() == 0) {
+			ExerciseLoader loader = new ExerciseLoader();
+			exercises = loader.load();			
+		}
 		loop();
-
+		SaveStatus.writeStatus(exercises);
 	}
 
 	private void loop() {
@@ -47,11 +50,24 @@ public class ExerciseController {
 					displayFeedback(exercise);
 					 
 					if(!exercise.isSucceded()) {
-						System.out.println("Noch mal versuchen? (j / n)?");
+						System.out.println("(a) Abbrechen\n(t) Tipp\n(b) beenden und sichern\n( ) nächster Versuch :)");
 						String answer = in.nextLine();
-						if(answer.toLowerCase().matches("[n].*")) {
-							break;
+						if(answer.toLowerCase().matches("[t].*")) {
+							System.out.println("--------------------------- Tipp -------------------------------------------");
+							System.out.println("\n" +exercise.nextHint()+"\n");
+							System.out.println("----------------------------------------------------------------------------");
 						}
+						else if(answer.toLowerCase().matches("[a].*")) {
+							System.out.println("\n-------------------- nächste Aufgabe ----------------------------------\n");
+							break;
+						} else if(answer.toLowerCase().matches("[b].*")) {
+							SaveStatus.writeStatus(exercises);
+							SaveStatus.writeFeedback(exercises);
+							System.exit(0);
+						} else {
+							System.out.println("\n---------------------- nächster Versuch --------------------------------\n");							
+						}
+						exercise.reset();
 					}
 				}
 			}
@@ -61,6 +77,8 @@ public class ExerciseController {
 	protected void checkSolution(Scanner in, Exercise exercise) {
 		System.out.println("Bitte gib deinen regex ein:");
 		String pattern = in.nextLine();
+		if(pattern.length() > 100) {
+		}
 		try {
 			if (regexChecker.checkWords(pattern, exercise.getGoodWords(), exercise.getBadWords())) {
 				exercise.setSucceded(true);
@@ -74,17 +92,20 @@ public class ExerciseController {
 	}
 
 	protected void displayFeedback(Exercise exercise) {
-		if (exercise.isSucceded()) {
-			System.out.println("Super gemacht!");
-		} else {
-			System.out.println("Noch nicht ganz. Versuch es doch noch mal :)");
-
-		}
 		System.out.println(
 				"\nAlle Wörter sollten grün sein. Alles was nicht erkannt wird, wird rot dargestellt.");
 		output(exercise.getGoodWords(), ANSI_GREEN, ANSI_RED);
 		System.out.println("\nAlle Wörter sollten blau sein. Alles was erkannt wird, wird pink dargestellt.");
 		output(exercise.getBadWords(), ANSI_PURPLE, ANSI_BLUE);
+
+		if (exercise.isSucceded()) {
+			System.out.println("----------------------------------------------------------------------------");
+			System.out.println("\nSuper gemacht!");
+			System.out.println("\n-------------------- nächste Aufgabe ----------------------------------\n");
+		} else {
+			System.out.println("Noch nicht ganz. Versuch es doch noch mal :)");
+
+		}
 	}
 
 
@@ -132,6 +153,8 @@ public class ExerciseController {
 			break;
 		case Exercise.CHUCK_NORRIS:
 			oldLevel = "Chuck Norris";
+			level = Exercise.END;
+			newLevel = "Nach Chuck Norris kann es nichts mehr geben. Selbst die Jedis verbeugen sich vor ihm.";
 			break;
 		default:
 			oldLevel = "Beginner";
