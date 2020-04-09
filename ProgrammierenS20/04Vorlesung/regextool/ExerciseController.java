@@ -50,7 +50,7 @@ public class ExerciseController {
 					displayFeedback(exercise);
 					 
 					if(!exercise.isSucceded()) {
-						System.out.println("(a) Abbrechen\n(t) Tipp\n(b) beenden und sichern\n( ) nächster Versuch :)");
+						System.out.println("(a) nächste Aufgabe\n(t) Tipp\n(b) beenden und sichern\n( ) nächster Versuch :)");
 						String answer = in.nextLine();
 						if(answer.toLowerCase().matches("[t].*")) {
 							System.out.println("--------------------------- Tipp -------------------------------------------");
