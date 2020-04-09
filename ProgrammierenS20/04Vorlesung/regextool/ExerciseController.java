@@ -77,8 +77,7 @@ public class ExerciseController {
 	protected void checkSolution(Scanner in, Exercise exercise) {
 		System.out.println("Bitte gib deinen regex ein:");
 		String pattern = in.nextLine();
-		if(pattern.length() > 100) {
-		}
+		exercise.setAnswer(pattern);
 		try {
 			if (regexChecker.checkWords(pattern, exercise.getGoodWords(), exercise.getBadWords())) {
 				exercise.setSucceded(true);
