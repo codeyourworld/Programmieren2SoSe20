@@ -56,5 +56,43 @@ public class Ship implements IGameObject {
 	public String toString() {
 		return "x = " + x + ", y = " + y;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + height;
+		result = prime * result + ((sprite == null) ? 0 : sprite.hashCode());
+		result = prime * result + width;
+		result = prime * result + x;
+		result = prime * result + y;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Ship other = (Ship) obj;
+		if (height != other.height)
+			return false;
+		if (sprite == null) {
+			if (other.sprite != null)
+				return false;
+		} else if (!sprite.equals(other.sprite))
+			return false;
+		if (width != other.width)
+			return false;
+		if (x != other.x)
+			return false;
+		if (y != other.y)
+			return false;
+		return true;
+	}
+	
 	
 }
