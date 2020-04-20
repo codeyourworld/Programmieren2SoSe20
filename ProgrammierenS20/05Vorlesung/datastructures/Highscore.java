@@ -1,35 +1,41 @@
 package datastructures;
 
-import java.util.HashSet;
-import java.util.Iterator;
+public class HighScore implements Comparable<HighScore>{
 
-public class MySet {
+	private String name;
+	private int points;
 
-	public static void main(String[] args) {
-		HashSet<String> names = new HashSet<>();
-		
-		names.add("Wolverine");
-		names.add("Pika");
-		names.add("Tim Apple");
-		names.add("Diggibiggi");
-		names.add("Joe Mama");
-		
-//		for(String name : names) {
-//			System.out.println(name);
-//			if(name.equals("Pika")) {
-//				names.remove(name);
-//			}
-//		}
-		
-		
-		Iterator<String> iterator = names.iterator();
-		while(iterator.hasNext()) {
-			String name = iterator.next();
-			System.out.println(name);
-			if(name.equals("Pika")) {
-				iterator.remove();
-			}		
-		}
-		System.out.println(names.size());
+	//Strg + shift + f = formatieren
+	public HighScore(String name, int points) {
+		super();
+		this.name = name;
+		this.points = points;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getPoints() {
+		return points;
+	}
+
+	public void setPoints(int points) {
+		this.points = points;
+	}
+
+	@Override
+	public int compareTo(HighScore other) {
+		if(this.points > other.points) {
+			return -1;
+		} else if(this.points < other.points) {
+			return 1;
+		}
+		return name.compareTo(other.name);
+	}
+
 }
