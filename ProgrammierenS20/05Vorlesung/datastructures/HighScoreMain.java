@@ -10,7 +10,7 @@ public class HighScoreMain {
 		highscore.add(new HighScore("Pika", 42));
 		highscore.add(new HighScore("Chuck", 10000));
 		highscore.add(new HighScore("Vegeta", 9001));
-		highscore.add(new HighScore("Edmund W", 42));
+		highscore.add(new HighScore("Edmund Weitz", 42));
 		highscore.add(new HighScore("Covid", 19));
 		highscore.add(new HighScore("CovidTEST", 1337));
 		
