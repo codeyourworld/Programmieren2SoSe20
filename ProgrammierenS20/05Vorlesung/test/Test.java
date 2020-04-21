@@ -16,6 +16,7 @@ public class Test {
 		Calendar now = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:S d.M.yyyy");
 		System.out.println(sdf.format(now.getTime()));
+		System.out.print(list);
 		
 	}
 }
