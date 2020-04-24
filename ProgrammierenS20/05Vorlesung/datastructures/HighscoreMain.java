@@ -13,7 +13,7 @@ public class HighscoreMain {
 		highscore.add(new Highscore("Vegeta", 9001));
 		highscore.add(new Highscore("Edmund", 42));
 		highscore.add(new Highscore("Covid", 19));
-		highscore.add(new Highscore("Covid", 1337));
+		highscore.add(new Highscore("Covid Hasselhoff", 1337));
 		
 		Collections.sort(highscore);
 		
