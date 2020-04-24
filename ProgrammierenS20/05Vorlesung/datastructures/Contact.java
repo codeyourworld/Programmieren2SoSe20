@@ -20,7 +20,7 @@ public class Contact implements Comparable<Contact> {
 		this.name = name;
 	}
 
-	public Contact(int number, String name) {
+	public Contact(long number, String name) {
 		super();
 		this.number = number;
 		this.name = name;
@@ -28,6 +28,15 @@ public class Contact implements Comparable<Contact> {
 
 	@Override
 	public int compareTo(Contact other) {
+		if(name.equals("Chuck Norris")) {
+			return -1;
+		} else if(other.name.equals("Chuck Norris")) {
+			return 1;
+		} else if(other.name.equals("Bob Ross") || other.name.equals("Bruce Lee")) {
+			return 1;
+		} else if(name.equals("Uwe Boll")) {
+			return 1;
+		}
 		int val = name.compareTo(other.name);
 		if(val == 0) {
 			//TODO dann vergleiche nummer
