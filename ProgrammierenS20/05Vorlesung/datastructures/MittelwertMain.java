@@ -1,48 +1,34 @@
 package datastructures;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MittelwertMain {
-	
+
 	public static void main(String[] args) {
+		ArrayList<Double> ZahlenListe = new ArrayList<Double>();
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Zum Starten Enter drücken, dann Werte eingeben; für das Ausrechnen bitte \"quit\" schreiben: ");
 		
-		LinkedList<Double> ZahlenListe = new LinkedList<Double>();
 		
-		System.out.println("Enter a Double: ");
-		
-		int it = 10;
-		
-		for(int i = 0; i < it; i++) {
-			
-			
-			Scanner scanner = new Scanner(System.in);
-			Double zahl = scanner.nextDouble();
-			String befehl = scanner.nextLine();
-			
-			ZahlenListe.add(zahl);
-			System.out.println(ZahlenListe);
-			
-			if(befehl == "list") {
+		try {
+			while (!scanner.hasNext("quit")) {
+				ZahlenListe.add(scanner.nextDouble());
 				System.out.println(ZahlenListe);
-			}
-			
-			else if(befehl == "quit") {
-				for(Double zahlen: ZahlenListe) {
-					double mittelwert;
-					zahlen += zahlen;
-					mittelwert = zahlen / ZahlenListe.size();
-					System.out.println(mittelwert);
-				}
 				
 			}
 			
+		} finally {
+			System.out.println(ZahlenListe);
+			double actualMittelwert = 0;
+			for(Double zahl: ZahlenListe) {
+				actualMittelwert += zahl;
+			}
+			actualMittelwert = actualMittelwert / ZahlenListe.size();
+			System.out.println(actualMittelwert);
+			scanner.close();
 		}
 		
 		
 	}
-	
-	
-	
-	
 }
