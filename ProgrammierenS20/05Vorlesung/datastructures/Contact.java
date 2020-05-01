@@ -1,6 +1,13 @@
 package datastructures;
 
-public class Contact implements Comparable<Contact> {
+import java.io.Serializable;
+
+public class Contact implements Comparable<Contact>, Serializable {
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private long number;
 	private String name;
 
@@ -28,25 +35,30 @@ public class Contact implements Comparable<Contact> {
 
 	@Override
 	public int compareTo(Contact other) {
-		if(name.equals("Chuck Norris")) {
+		if (name.equals("Chuck Norris")) {
 			return -1;
-		} else if(other.name.equals("Chuck Norris")) {
+		} else if (other.name.equals("Chuck Norris")) {
 			return 1;
-		} else if(other.name.equals("Bob Ross") || other.name.equals("Bruce Lee")) {
+		} else if (other.name.equals("Bob Ross") || other.name.equals("Bruce Lee")) {
 			return 1;
-		} else if(name.equals("Uwe Boll")) {
+		} else if (name.equals("Uwe Boll")) {
 			return 1;
 		}
 		int val = name.compareTo(other.name);
-		if(val == 0) {
-			//TODO dann vergleiche nummer
-			if(number < other.number) {
+		if (val == 0) {
+			// TODO dann vergleiche nummer
+			if (number < other.number) {
 				return -1;
-			} else if(number >= other.number) {
+			} else if (number >= other.number) {
 				return 1;
 			}
 		}
 		return val;
+	}
+
+	@Override
+	public String toString() {
+		return "Contact [number=" + number + ", name=" + name + "]";
 	}
 
 }
