@@ -1,14 +1,14 @@
 package datastructures;
 
-public class Account {
+public class Account implements Comparable<Account> {
 	
 	private String Benutzername;
 	private int Telefonnummer;
 	
 	public Account(String benutzername, int telefonnummer) {
 		super();
-		Benutzername = benutzername;
-		Telefonnummer = telefonnummer;
+		this.Benutzername = benutzername;
+		this.Telefonnummer = telefonnummer;
 	}
 
 	public String getBenutzername() {
@@ -29,9 +29,29 @@ public class Account {
 
 	@Override
 	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		
+		if (!(obj instanceof Account)) {
+			return false;
+		}
+		
 		
 		return super.equals(obj);
 	}
+
+	@Override
+	public int compareTo(Account other) {
+		return this.Benutzername.compareTo(other.Benutzername);
+	}
+
+	
+
+
+
+
+	
 	
 	
 
