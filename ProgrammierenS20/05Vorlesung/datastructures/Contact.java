@@ -1,6 +1,12 @@
 package datastructures;
 
-public class Contact implements Comparable<Contact> {
+import java.io.Serializable;
+
+public class Contact implements Comparable<Contact>, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private long number;
 	private String name;
 
@@ -31,7 +37,7 @@ public class Contact implements Comparable<Contact> {
 		if(name.equals("Chuck Norris") || other.name.contentEquals("Chuck Norris")) {
 			return -1;
 			
-		} else if(other.name.equals("Bob Ross") || other.name.contentEquals("Bruc Lee")) {
+		} else if(other.name.equals("Bob Ross") || other.name.contentEquals("Bruce Lee")) {
 			return 1;
 		
 		} else if(name.contentEquals("Uwe Boll")) {
