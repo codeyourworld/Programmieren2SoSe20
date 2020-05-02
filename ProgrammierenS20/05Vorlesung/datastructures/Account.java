@@ -1,10 +1,10 @@
 package datastructures;
 
-public class Account implements Comparable<Account> {
-	
+public class Account {
+
 	private String Benutzername;
 	private int Telefonnummer;
-	
+
 	public Account(String benutzername, int telefonnummer) {
 		super();
 		this.Benutzername = benutzername;
@@ -28,31 +28,36 @@ public class Account implements Comparable<Account> {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		
-		if (!(obj instanceof Account)) {
-			return false;
-		}
-		
-		
-		return super.equals(obj);
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((Benutzername == null) ? 0 : Benutzername.hashCode());
+		result = prime * result + Telefonnummer;
+		return result;
 	}
 
 	@Override
-	public int compareTo(Account other) {
-		return this.Benutzername.compareTo(other.Benutzername);
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Account other = (Account) obj;
+		if (Benutzername == null) {
+			if (other.Benutzername != null)
+				return false;
+		} else if (!Benutzername.equals(other.Benutzername))
+			return false;
+		if (Telefonnummer != other.Telefonnummer)
+			return false;
+		return true;
 	}
 
 	
-
-
-
-
-	
-	
 	
 
+	
 }
+	
