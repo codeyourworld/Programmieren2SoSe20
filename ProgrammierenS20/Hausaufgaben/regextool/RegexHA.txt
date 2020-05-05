@@ -1,0 +1,21 @@
+Begginer:
+lv1: [A-Za-z]*(auf)[a-z]*.*
+lv2: [a-z]*
+lv3: \d*
+lv4: [A-Za-z]*
+Medium:
+lv5: [A-Za-z]*\s[A-Za-z]*
+lv6: [a-n]*
+lv7: \d{1,2}(.)\d{1,2}(.)\d{2,4}   
+lv8:(www.)[A-Za-z]*\d*[A-Za-z]*(.de)$
+Advanced:
+lv9: [sS][a-z]*ß{0,1}[^s\d]   
+lv10: ([A-Za-z]*)(\s[A-Za-z][a-z]*){0,}
+lv11: [aAbBcCdD][a-z]*(n)$
+lv12: [aA][a-z]*(n)[a-z]*
+lv13: \S([0-1][0-9]|[2][0-3])\S[0-5][0-9]\S[0-5][0-9]\S\s.*     //Hier habe ich viel mit \S gespielt aber ist unnötig
+lv14: ^[A-Za-z[äüöÄÜÖ]*[0-9]*]*{1,}\S[@][a-z]*[.][a-z]{2,4}
+lv15: [0-9]{1,2}[.][0-9]{1,2}[.](([0-9]{4})|([0-9]{2}))
+ChuckNorris:
+lv16: ([$]|[_]|[A-Za-z])[A-Za-z[0-9]*[_]*[$]*]*      //Erste versuch B))
+lv17:  (((boolean)*|[A-Za-z]*[_]*)|(boolean)\s(([$]|[_]|[$]*[A-Za-z])[A-Za-z[0-9]*[_]*[=]*(\s)*]*(\s{0,1}(true|false))|[A-Za-z]*[_]*[1-9]*[$]*))(;)$    //Nicht richtig aber I give up
