@@ -6,6 +6,7 @@ import java.util.Collections;
 public class HighScoreMain {
 
 	public static void main(String[] args) {
+		//TODO hier fehlt die Klasse Highscore
 		ArrayList<HighScore> highscore = new ArrayList<>();
 		highscore.add(new HighScore("Pika", 42));
 		highscore.add(new HighScore("Chuck", 10000));
