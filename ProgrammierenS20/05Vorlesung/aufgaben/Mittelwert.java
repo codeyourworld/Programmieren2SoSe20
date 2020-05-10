@@ -32,6 +32,7 @@ public class Mittelwert {
 
 	public static void main(String[] args) {
 		Scanner myScanner = new Scanner(System.in);
+		//TODO nimm eine LinkedList
 		ArrayList<Double> list = new ArrayList<Double>();
 		String wert = "";
 		while (!wert.equals("quit")) {
@@ -45,6 +46,7 @@ public class Mittelwert {
 
 		}
 
+		//TODO schliess den Scanner
 		System.out.println(list);
 		double summe = 0;
 		for (Double d : list) {

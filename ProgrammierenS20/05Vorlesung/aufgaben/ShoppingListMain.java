@@ -10,7 +10,8 @@ public class ShoppingListMain {
 		shoppingList.put("Brot", "zwei Stück");
 		shoppingList.put("Eier", "sechs Stück");
 		System.out.println(shoppingList);
-
+		
+		//TODO gib die Elemente mit Hilfe der Methode keySet und einer foreach Schleife aus.
 	}
 
 }
