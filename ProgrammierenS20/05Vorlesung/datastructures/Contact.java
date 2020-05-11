@@ -27,6 +27,11 @@ public class Contact implements Comparable<Contact> {
 	}
 
 	@Override
+    public int compareTo(Contact o) {
+        return this.getName().compareTo(o.getName());
+	}
+	
+	/*@Override
 	public int compareTo(Contact other) {
 		if(name.equals("Chuck Norris")) {
 			return -1;
@@ -47,6 +52,6 @@ public class Contact implements Comparable<Contact> {
 			}
 		}
 		return val;
-	}
+	}*/
 
 }
