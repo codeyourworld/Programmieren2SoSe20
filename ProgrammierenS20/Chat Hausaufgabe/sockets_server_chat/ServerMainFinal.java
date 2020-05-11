@@ -39,6 +39,7 @@ public class ServerMainFinal {
 
 	}
 
+	//TO-DO Threads durchiterieren und quitten, 
 	public void stop() {
 		Scanner keyboard = new Scanner(System.in);
 		String text = keyboard.next();
@@ -54,7 +55,5 @@ public class ServerMainFinal {
 		ServerMainFinal server = new ServerMainFinal();
 		server.createServer();
 		server.stop();
-
-
 	}
 }
