@@ -1,4 +1,4 @@
-package ServerPackage;
+package ChatHA;
 
 import java.util.Scanner;
 import java.util.concurrent.BlockingQueue;
