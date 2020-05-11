@@ -31,7 +31,6 @@ public class ConnectionThread extends Thread {
 		this.pWriter = pWriter;
 	}
 
-	@Override
 	public void run() {
 		try {
 			//Akzeptiert die Verbindung und gibt Verbindungsdaten zurück
