@@ -3,6 +3,7 @@ package Netzwerk;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -14,7 +15,7 @@ public class ConnectionThread extends Thread {
 	ServerSocket serverSocket;
 	BlockingQueue<String> queue;
 	List<PrintWriter> printWriterList;
-	private LinkedList<ReaderThread> readerList;
+	private ArrayList<ReaderThread> readerList;
 	Scanner scannie = new Scanner(System.in);
 
 	public ConnectionThread(ServerSocket serverSocket, BlockingQueue<String> queue, List<PrintWriter> printWriterList) {
@@ -38,7 +39,7 @@ public class ConnectionThread extends Thread {
 				readerThread.start();
 
 			} catch (Exception e) {
-
+				e.printStackTrace();
 			}
 		}
 	}

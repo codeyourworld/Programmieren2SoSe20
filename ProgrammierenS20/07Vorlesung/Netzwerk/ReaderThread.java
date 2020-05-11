@@ -6,7 +6,7 @@ import java.util.concurrent.BlockingQueue;
 public class ReaderThread extends Thread {
 
 	private Scanner scannie;
-	private BlockingQueue queue;
+	private BlockingQueue<String> queue;
 	private boolean isRunning = true;
 
 	public ReaderThread(Scanner scannie, BlockingQueue<String> queue) {

@@ -15,9 +15,9 @@ public class ClientMain {
 			Scanner scannie = new Scanner(socket.getInputStream());
 
 			System.out.println("Gib eine Nachricht ein:");
-			Scanner scannieIn = new Scanner(System.in);
+			
 
-			writeMessage(printWriter, scannieIn);
+			writeMessage(printWriter);
 
 			while(isRunning) {
 				System.out.println(scannie.nextLine());
@@ -25,7 +25,6 @@ public class ClientMain {
 
 			
 			scannie.close();
-			scannieIn.close();
 			printWriter.close();
 			socket.close();
 
@@ -34,11 +33,12 @@ public class ClientMain {
 		}
 	}
 
-	private void writeMessage(PrintWriter printWriter, Scanner scannieIn) {
+	private void writeMessage(PrintWriter printWriter) {
 		new Thread(new Runnable() {
 
 			@Override
 			public void run() {
+				Scanner scannieIn = new Scanner(System.in);
 				while (isRunning) {
 					String msg = scannieIn.next();
 					if(msg.equalsIgnoreCase("quit")) { // IgnoreCase egal, ob kein oder groﬂ geschrieben

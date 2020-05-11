@@ -3,6 +3,7 @@ package Netzwerk;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -18,7 +19,7 @@ public class ServerMain {
 		try {
 			ServerSocket serverSocket = new ServerSocket(3445, 8);
 			BlockingQueue<String> queue = new LinkedBlockingQueue<String>();
-			LinkedList<PrintWriter> printWriterList = new LinkedList<>();
+			ArrayList<PrintWriter> printWriterList = new ArrayList<>();
 
 			WriterThread wrThread = new WriterThread(queue, printWriterList);
 			wrThread.start();
