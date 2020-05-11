@@ -44,5 +44,6 @@ public class WriterThread extends Thread {
 
 	public void stopWT(){
 		isRunning = false;
+		interrupt();
 	}
 }

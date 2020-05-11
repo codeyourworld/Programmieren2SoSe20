@@ -21,14 +21,16 @@ public class ConnectionThread extends Thread {
 
 	private BlockingQueue<String> queue;
 	private ServerSocket serversocket;
+	private ArrayList<ReaderThread> readerThreads = new ArrayList<>();
 	private ArrayList<PrintWriter> pWriter = new ArrayList<>();
 
 
-	public ConnectionThread(BlockingQueue<String> queue, ServerSocket serversocket, ArrayList<PrintWriter> pWriter) {
+	public ConnectionThread(BlockingQueue<String> queue, ServerSocket serversocket, ArrayList<PrintWriter> pWriter, ArrayList<ReaderThread> readerThreads) {
 		super();
 		this.queue = queue;
 		this.serversocket = serversocket;
 		this.pWriter = pWriter;
+		this.readerThreads = readerThreads;
 	}
 
 	public void run() {
@@ -37,14 +39,19 @@ public class ConnectionThread extends Thread {
 			System.out.println("Warte auf Verbindung vom Client :) ");
 			Socket socket = serversocket.accept();
 			System.out.println(socket.getLocalAddress());
-
 			Scanner scanner = new Scanner(socket.getInputStream());
+			
 			ReaderThread rT = new ReaderThread(scanner,queue);
+				synchronized(readerThreads) {
+					readerThreads.add(rT);
+				}
 			rT.start();
 			System.out.println("ReaderThread check");
 			
 			PrintWriter printWriter = new PrintWriter(socket.getOutputStream());
-			pWriter.add(printWriter);
+				synchronized(pWriter) {
+					pWriter.add(printWriter);
+				}
 			System.out.println("PrintWriter check");
 
 		} catch (IOException e) {

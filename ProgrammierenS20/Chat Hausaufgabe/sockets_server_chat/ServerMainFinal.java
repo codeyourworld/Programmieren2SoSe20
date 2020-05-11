@@ -4,13 +4,16 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 public class ServerMainFinal {
 
-	private BlockingQueue<String> queue = new ArrayBlockingQueue<String>(1024);
+	//private BlockingQueue<String> queue = new ArrayBlockingQueue<String>(1024);
+	// bei der Array BQ muss eine Obergrenze an, in der Liste liegende Nachrichten angegeben werden, wollen wir beim Chat gar nicht
+	private BlockingQueue<String> queue = new LinkedBlockingQueue<String>();
 	private ArrayList<PrintWriter> pWriter = new ArrayList<>();
+	private ArrayList<ReaderThread> readerThreads = new ArrayList<>();
 	private ArrayList<ConnectionThread> connectionThread = new ArrayList<>();
 
 	public void createServer() {
@@ -20,7 +23,7 @@ public class ServerMainFinal {
 			ServerSocket serversocket = new ServerSocket(3445, clients);
 
 			for(int i=0;i<clients;i++) {
-				connectionThread.add(new ConnectionThread(queue, serversocket, pWriter));
+				connectionThread.add(new ConnectionThread(queue, serversocket, pWriter, readerThreads));
 				connectionThread.get(i).start();
 				System.out.println("cT started " + i);
 			}
