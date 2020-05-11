@@ -8,6 +8,8 @@
 	<classpathentry kind="src" path="05Vorlesung"/>
 	<classpathentry kind="src" path="06Vorlesung"/>
 	<classpathentry kind="src" path="07Vorlesung"/>
+	<classpathentry kind="src" path="Chat Hausaufgabe"/>
+	<classpathentry kind="src" path="Docs"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
