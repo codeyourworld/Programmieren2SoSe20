@@ -41,6 +41,7 @@ public class WriterThread extends Thread {
 		}
 	}
 	public void quit() {
+		interrupt();
 		isRunning = false;
 	}
 	

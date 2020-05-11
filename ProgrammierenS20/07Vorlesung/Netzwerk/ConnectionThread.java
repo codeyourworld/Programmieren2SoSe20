@@ -12,30 +12,37 @@ import java.util.concurrent.BlockingQueue;
 public class ConnectionThread extends Thread {
 
 	private boolean isRunning = true;
-	ServerSocket serverSocket;
-	BlockingQueue<String> queue;
-	List<PrintWriter> printWriterList;
+	private ServerSocket serverSocket;
+	private BlockingQueue<String> queue;
+	private ArrayList<PrintWriter> printWriterList;
 	private ArrayList<ReaderThread> readerList;
-	Scanner scannie = new Scanner(System.in);
 
-	public ConnectionThread(ServerSocket serverSocket, BlockingQueue<String> queue, List<PrintWriter> printWriterList) {
+	public ConnectionThread(ServerSocket serverSocket, BlockingQueue<String> queue,
+			ArrayList<PrintWriter> printWriterList, ArrayList<ReaderThread> readerList) {
 		super();
 		this.serverSocket = serverSocket;
 		this.queue = queue;
 		this.printWriterList = printWriterList;
+		this.readerList = readerList;
 	}
 
 	@Override
 	public void run() {
 		while (isRunning) {
-			try {
+			try {		
 				Socket socket = serverSocket.accept();
-				System.out.println("Connected");
+				System.out.println("Connected");				
+				Scanner scannie = new Scanner(socket.getInputStream());
 
-				PrintWriter pwr = new PrintWriter(socket.getOutputStream());
-				printWriterList.add(pwr);
+				PrintWriter printWriter = new PrintWriter(socket.getOutputStream());
+				synchronized(printWriterList) {
+					printWriterList.add(printWriter);
+				}
 				ReaderThread readerThread = new ReaderThread(scannie, queue);
-				readerList.add(readerThread);
+				synchronized(readerList) {
+					readerList.add(readerThread);
+				}
+				
 				readerThread.start();
 
 			} catch (Exception e) {
