@@ -1,28 +1,40 @@
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class ServerMain {
+	private static final int NUM_CONNECTIONS = 42;
 
 	public void createServer() {
-		
 		try {
-			ServerSocket serverSocket = new ServerSocket(3445, 1);
-			Socket socket = serverSocket.accept();
 			
-			PrintWriter printWriter = new PrintWriter(socket.getOutputStream());
-			Scanner scanner = new Scanner(socket.getInputStream());
+			ServerSocket serverSocket = new ServerSocket(3445, NUM_CONNECTIONS);
+			BlockingQueue<String> queue = new LinkedBlockingQueue<String>();
+			ArrayList<PrintWriter> writer = new ArrayList<PrintWriter>();
+			ArrayList<ReaderThread> readerThreads = new ArrayList<>();
 			
-			System.out.println(scanner.nextLine());
-			printWriter.print("Hallo Client :)");
-			printWriter.println("wie gehts dir?");
-			printWriter.flush();
+			WriterThread writerThread = new WriterThread(writer, queue);
+			writerThread.start();
 			
-			printWriter.close();
-			scanner.close();
-			socket.close();
-			serverSocket.close();
+			for(int i = 0; i < NUM_CONNECTIONS; i++) {
+				ConnectionThread connectionThread = new ConnectionThread(serverSocket, readerThreads, queue, writer);
+				connectionThread.start();
+			}
+			
+			Scanner scanner = new Scanner(System.in);
+			if(scanner.nextLine().contentEquals("quit")) {
+				writerThread.quit();
+
+				for(ReaderThread readerThread : readerThreads) {
+					readerThread.quit();
+				}
+				serverSocket.close();
+				scanner.close();
+			}
 			
 			
 		} catch(Exception e) {
