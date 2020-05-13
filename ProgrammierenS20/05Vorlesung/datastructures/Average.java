@@ -2,6 +2,7 @@ package datastructures;
 
 //import the scanner
 import java.util.Scanner;
+import java.util.LinkedList;
 
 public class Average {
 
@@ -10,13 +11,13 @@ public class Average {
 		System.out.println("Geben Sie Zahlen ein, aus denen der Mittelwert ermittelt werden soll. "
 				+ "Um das Ergebnis zu erhalten bitte 'quit' eingeben!");
 		Scanner scanner = new Scanner(System.in);
+		LinkedList<Double> list=new LinkedList<Double>();
+		
 		String input = "";
 
 		// sum of the inputs
 		double sum = 0;
 
-		// counts the number of values
-		double count = 0;
 
 		while (true) {
 
@@ -26,8 +27,8 @@ public class Average {
 			{
 				try 
 				{
-					sum = sum + Double.valueOf(input);
-					count = count + 1;
+					list.add(Double.valueOf(input));
+					
 				} 
 				
 				catch (Exception e) 
@@ -41,8 +42,12 @@ public class Average {
 			}
 		}
 
+		for( double k: list ) {
+			sum = sum + k;
+		}
+		
 		scanner.close();
-		System.out.println("Average: " + sum / count);
+		System.out.println("Average: " + sum /list.size());
 
 	}
 
