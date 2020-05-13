@@ -18,6 +18,9 @@ public class Mittelwert {
 			if(!wert.equals("quit")){
 				try 
 				{
+					//TODO schrieb lieber:
+//					werte.add(Double.valueOf(wert));
+					//TODO es kann eine NumberFormatException geworfen werden, die fängt man wieder mit try/catch ab
 					werte.add(new Double(Double.valueOf(wert)));
 				}
 				catch(Exception e)

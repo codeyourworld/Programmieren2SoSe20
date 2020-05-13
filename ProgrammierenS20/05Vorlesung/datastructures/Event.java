@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 
 public class Event {
+	//TODO schreib alle Variablen klein
 	private String Eventname;
 	private String Ort;
 	private Date Startzeit;
@@ -68,7 +69,7 @@ public class Event {
 		cal.set(2043, 11, 5);
 		events.add(new Event("Stürme", "Pentagon", cal.getTime()));
 		
-		SimpleDateFormat sdf   = new SimpleDateFormat("HH:mm:ss");
+		SimpleDateFormat sdf   = new SimpleDateFormat("dd.MM.SS HH:mm:ss");
 		
 		for(Event e : events) {
 			System.out.println(e.getEventname() + " : " + e.getOrt() + " : " + sdf.format(e.getStartzeit()));

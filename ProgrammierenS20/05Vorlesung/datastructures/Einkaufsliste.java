@@ -14,6 +14,7 @@ public class Einkaufsliste {
 		liste.put("", "");
 		
 		
+		//TODO gib die ganze liste aus
 		
 		System.out.println("So viel Klopapier braucht man " + liste.get("Klopapierus"));
 		

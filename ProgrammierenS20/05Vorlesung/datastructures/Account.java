@@ -9,6 +9,7 @@ import java.util.Objects;
 import java.util.Scanner;
 import java.util.Set;
 
+//TODO Account erbst nicht von HastSet
 public class Account extends HashSet{
 	
 	private String benutzer;
@@ -53,7 +54,7 @@ public class Account extends HashSet{
 		return result;
 	}
 
-	
+	//TODO brauchst du nicht
 	public static boolean areAllFalse(boolean[] array)
 	{
 		for(boolean b : array) if(b) return false;
@@ -62,8 +63,10 @@ public class Account extends HashSet{
 
 	
 	public static void main(String args []) {
+		//TODO schreib accounts klein
 		HashSet<Account> Accounts = new HashSet<Account>();
 		
+		//TODO schreib exAcc klein		
 		Account ExAcc = new Account("Pedro", 2151);
 		Accounts.add(ExAcc);
 		Accounts.add(new Account("Keepo", 21511));
@@ -71,6 +74,8 @@ public class Account extends HashSet{
 		
 		
 		Scanner scan = new Scanner(System.in);
+
+		//TODO ne Eingabe aufforderung hier wäre schick
 		
 		String name = scan.next();
 		int number = scan.nextInt();
@@ -96,9 +101,13 @@ public class Account extends HashSet{
 			System.out.println("Etwas Hat sich gedoppelt");
 		}*/
 		
+		//TODO du kannst auch bedingungslos sagen 
+		//Accounts.add(newAcc);
+		//eine Menge kann keine 2 gleichen Elemente enthalten
 		if(!Accounts.contains(newAcc)) {
 			Accounts.add(newAcc);
 		}
+
 		
 		for(Account acc1 : Accounts) 
 		{
