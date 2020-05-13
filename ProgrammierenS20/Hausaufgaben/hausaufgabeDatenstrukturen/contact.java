@@ -61,8 +61,4 @@ public class contact implements Comparable<contact> {
 		return val;
 	}
 	
-	
-		
-		
-	
 }

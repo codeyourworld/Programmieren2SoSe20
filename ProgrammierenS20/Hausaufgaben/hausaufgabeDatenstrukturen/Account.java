@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
 
-public class Account implements Comparable<Account> { // Diese Aufgabe habe ich leider nicht ganz verstanden, ich muss
+public class Account implements Comparable<Account> {
 														// HashSets Wiederholen
 
 	private String Name;
