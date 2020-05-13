@@ -20,6 +20,8 @@ public class Mittelwert {
 				break;
 			}
 			else {
+				//TODO hier kann eine Numberformat exception geworfen werden, wenn in eingabe z.b. "a" steht.
+				//TODO in solchen Fällen würde man das mit try/catch abfangen, auch wenn du es nicht explizit musst
 				double zahl = Double.parseDouble(eingabe);
 				zahlen.add(zahl);
 			}
