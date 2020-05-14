@@ -8,9 +8,6 @@ public class HighScore implements Comparable<HighScore> {
 	private String name;
 	private int points;
 
-	// Declaration of Variables. Ehrlich gesagt habe fast alles einfach von Stephi
-	// Copy and Pasted
-
 	public HighScore(String name, int points) {
 		super();
 		this.name = name;

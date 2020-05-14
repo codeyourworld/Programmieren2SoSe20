@@ -74,7 +74,7 @@ public class Account implements Comparable<Account> {
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
+		final int prime = 31;                                                    // <---- Hier hat mich Mona geholfen
 		int result = 1;
 		result = prime * result + (int) (Number ^ (Number >>> 32));
 		result = prime * result + ((Name == null) ? 0 : Name.hashCode());
@@ -82,7 +82,7 @@ public class Account implements Comparable<Account> {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(Object obj) {						//Für Klausur Wiederholen!
 		if (this == obj)
 			return true;
 		if (obj == null)

@@ -1,0 +1,15 @@
+Links worth checking:
+
+geeksforgeeks:
+https://www.geeksforgeeks.org/hashmap-keyset-method-in-java/
+
+Serializable (and much more useful info);
+http://tutorials.jenkov.com/java-io/serializable.html
+http://tutorials.jenkov.com/java-io/objectinputstream.html
+
+RegexPractice:
+https://regexr.com/
+
+Begginers Java tutorial (2h of video):
+https://www.youtube.com/watch?v=eIrMbAQSU34&start=2353s
+
