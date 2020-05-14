@@ -1,4 +1,4 @@
-package fIlesIOHA;
+
 
 //import java.io.FileInputStream;
 //import java.io.FileOutputStream;
@@ -46,14 +46,25 @@ public class Contact implements Serializable {
 		
 		 ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("Hausaufgaben\\filesIOHA\\ContactOutput.bin"));
 
-		        Contact contactReadObject = (Contact) objectInputStream.readObject();
+		 		//TODO das hier willst du eigentlich:
+		 		Object object = objectInputStream.readObject();
+		 		Contact contact = null;
+		 		if(object instanceof Contact) {
+		 			contact = (Contact) object;
+		 		}
+		 		
+		 		if(contact != null) {
+			        System.out.println(contact.getName() + ": " + contact.getNumber());
+		 		}
+//		        Contact contactReadObject = (Contact) objectInputStream.readObject();
 
 		        objectInputStream.close();
 
-		        System.out.println(contactReadObject.getName() + ": " + contactReadObject.getNumber());
-		        System.out.println("Is my object of the type Contact? :");
-		        System.out.print(contactReadObject instanceof Contact);
-		    
+//		        System.out.println(contactReadObject.getName() + ": " + contactReadObject.getNumber());
+//		        System.out.println("Is my object of the type Contact? :");
+//		        System.out.print(contactReadObject instanceof Contact);
+
+		        
 	             //Habe Problemen mit der Casting, also ich weiﬂ nicht genau wie soll ich ein Contact Object zu Etwas anderen Casten.
 		        
 //		        

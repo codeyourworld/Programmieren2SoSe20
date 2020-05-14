@@ -30,5 +30,7 @@ public class EinfkauflisteMain {
 	        //https://www.geeksforgeeks.org/hashmap-keyset-method-in-java/
 	        System.out.println("The keys for the set are " + einkaufsListe.keySet());
 	        System.out.println("And the Whole set is " + einkaufsListe);
+	        //TODO iterier mit einer for Schleife über alle keys und geb dann die elemente aus.
+	        
 	    }
 }

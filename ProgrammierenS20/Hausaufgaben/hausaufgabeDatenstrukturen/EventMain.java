@@ -7,7 +7,8 @@ import java.util.LinkedList;
 public class EventMain {
 
 	public static void main(String[] args) {
-		
+
+		//TODO ihr solltet hier eigentlich eine HashSet verwenden
 		LinkedList<Event> event = new LinkedList<>();
 		event.add(new Event("1am P2 lernen", "zu Hause", "1am"));
 		event.add(new Event("srsly tho P2 is Important", "Study more at home", "10am until 2am every day"));

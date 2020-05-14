@@ -24,7 +24,9 @@ public class TextDateiGenerator {
 		try (FileWriter fileWriter = new FileWriter(file, true);
 				PrintWriter printWriter = new PrintWriter(fileWriter)) {
 
+			//TODO schreib Variablennamen klein
 			Scanner Input = new Scanner(System.in);
+			//TODO Bitte schreib in der Konsole was zu tun ist, sonst muss man doch erstmal in den Code gucken. Also hier z.B. mit Quit wird die eingabe beendet
 			System.out.println("Write your text please:");
 			while (isRunning) {
 				String text = Input.next();

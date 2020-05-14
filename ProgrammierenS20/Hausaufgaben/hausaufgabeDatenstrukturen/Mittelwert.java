@@ -7,6 +7,8 @@ public class Mittelwert {
 	public static void main(String[] args) {
 
 		for (int i = 1; i < 2;) {
+			//TODO ihr sollt hier eine LinkedList und beliebig viele Werte annehmen verwenden.
+			//TODO mit einer LinkedList ist das auch viel einfacher...
 			Scanner myscan = new Scanner(System.in);
 			System.out.println("geben Sie bitte ein Wert ein:");
 			int Value1 = myscan.nextInt();

@@ -27,6 +27,8 @@ public class Einkaufliste {
 		Menge = menge;
 	}
 
+	//TODO aber eigentlich brauchst du diese Klasse gar nicht
+	//TODO Variablen sollten immer zuerst in einer Klasse stehen
 	private String Artikel;
 	private String Menge;
 }
