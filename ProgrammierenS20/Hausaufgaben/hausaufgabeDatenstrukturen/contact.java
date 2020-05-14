@@ -5,6 +5,7 @@ import java.util.Collections;
 
 import datastructures.Contact;
 
+//TODO schreib Contact gross
 public class contact implements Comparable<contact> {
 
 	private String name;
