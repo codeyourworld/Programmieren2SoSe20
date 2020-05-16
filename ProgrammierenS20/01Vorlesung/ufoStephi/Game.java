@@ -2,6 +2,11 @@ package ufoStephi;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import view.GameFrameWork;
@@ -9,6 +14,7 @@ import view.IGameObject;
 import view.IKeyboardListener;
 import view.ITickableListener;
 import view.Message;
+import java.util.Scanner;
 
 /**
  * Creates ufos which moves from the upper left side of the screen to the upper right side. 
@@ -35,8 +41,9 @@ public class Game implements ITickableListener, IKeyboardListener {
 	private boolean gameOver = false;
 	private Message message;
 	private int collisionTimer = 0;
-	private static final int MAX_MISSED = 20;
+	private static final int MAX_MISSED = 2;
 	private static final int COLLISION_DELAY = 5;
+	private HighScore allScores;
 	
 	/**
 	 * Starts the game.
@@ -56,6 +63,22 @@ public class Game implements ITickableListener, IKeyboardListener {
 		Ufo ufo = new Ufo(-20, screenHeight / 8, screenHeight / (2 * 5), screenHeight / (2 * 9), 5,
 				"01Vorlesung\\assets\\ufo21.png" + "");
 		ufos.add(ufo);
+		
+		//HighScoretabelle wird hinzugefügt, wenn nicht bereits eine vorhanden ist
+		try {
+			File file = new File("score.txt");
+			FileInputStream fis = new FileInputStream(file);
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			Object obj = ois.readObject();
+			if(obj instanceof HighScore) {
+				allScores = (HighScore) obj;
+			}
+			ois.close();
+			fis.close();
+		} catch (Exception e) {
+			allScores = new HighScore();
+		}
+		
 
 		for (int i = 1; i < 10; i++) {
 			addUfo();
@@ -135,11 +158,28 @@ public class Game implements ITickableListener, IKeyboardListener {
 	/**
 	 * If a user missed 20 times the target game is over. A game over message is displayed.
 	 */
+	//Hier wurde ein Objekt der Klasse Score hinzugefügt
 	protected void checkGameOver() {
 		if (targetMissed >= MAX_MISSED) {
 			gameOver = true;
 			view.addMessage(new Message("Game Over! \n" + counter + " Points", screenWidth / 2 - 150,
-					screenHeight / 2, 40, new Color(255, 255, 255)));
+					screenHeight / 2, 20, new Color(255, 255, 255)));
+			Score score = new Score(counter, "player" + allScores.scoreList.size());
+			allScores.scoreList.add(score);
+			
+			allScores.ToString();
+			
+			try {
+				File file = new File("score.txt");
+				FileOutputStream fos = new FileOutputStream(file);
+				ObjectOutputStream oos = new ObjectOutputStream(fos);
+				oos.writeObject(allScores);
+				oos.close();
+				fos.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+				
+			}
 		}
 	}
 
