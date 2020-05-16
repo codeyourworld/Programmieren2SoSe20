@@ -36,6 +36,14 @@ public class Ship implements IGameObject {
 		this.sprite = sprite;
 	}
 	
+	public void setX(int newX) {
+		x= newX;
+	}
+	
+	public void setY(int newY) {
+		y=newY;
+	}
+	
 	public int getX() {
 		return x;
 	}
