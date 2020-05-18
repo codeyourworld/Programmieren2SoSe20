@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MyFirstApp</string>
+    <string name="welcome">Hallo P2-Vorlesung!</string>
+    <string name="giveNumber">Bitte gib eine Zahl ein</string>
+    <string name="notGuessed">Du hast die Zahl noch nicht erraten</string>
+    <string name="guessed">Glückwunsch! Die Zahl war korrekt</string>
+    <string name="emptyField"> - </string>
+    <string name="checkButton">CHECK</string>
 </resources>
