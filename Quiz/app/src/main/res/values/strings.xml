@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Quiz</string>
+    <string name="a_lasagne">A: Lasagne</string>
+    <string name="b">B</string>
+    <string name="a">A</string>
+    <string name="c">C</string>
+    <string name="was_ist_dein_leibgericht">Was ist dein Leibgericht?</string>
+    <string name="c_d_ner_k_ftespie">C: Döner / Köftespieß</string>
+    <string name="b_pizza">B: Pizza</string>
+</resources>

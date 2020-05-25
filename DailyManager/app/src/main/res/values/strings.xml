@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">DailyManager</string>
+    <string name="time">Time</string>
+    <string name="name">Name</string>
+    <string name="note">Note</string>
+    <string name="notification">Notification</string>
+    <string name="location">Location</string>
+
+
+</resources>
