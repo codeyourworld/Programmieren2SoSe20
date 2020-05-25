@@ -27,7 +27,7 @@ public class TextDateiGenerator {
 			//TODO schreib Variablennamen klein
 			Scanner Input = new Scanner(System.in);
 			//TODO Bitte schreib in der Konsole was zu tun ist, sonst muss man doch erstmal in den Code gucken. Also hier z.B. mit Quit wird die eingabe beendet
-			System.out.println("Write your text please:");
+			System.out.println("if you wish to end the Program, type Quit. Please write your text now:");
 			while (isRunning) {
 				String text = Input.next();
 				if (text.equalsIgnoreCase("Quit")) {
