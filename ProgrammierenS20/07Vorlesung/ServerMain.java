@@ -2,14 +2,19 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.List;
+=======
+>>>>>>> ebb25cd29ef2e74a9155725fdd4fa0ee4b67f63e
 import java.util.Scanner;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class ServerMain {
+	private static final int NUM_CONNECTIONS = 42;
 
 	public void createServer() {
+<<<<<<< HEAD
 
 		try {
 			ServerSocket serverSocket = new ServerSocket(3445, 2);
@@ -68,6 +73,36 @@ public class ServerMain {
 			serverSocket.close();
 
 		} catch (Exception e) {
+=======
+		try {
+			
+			ServerSocket serverSocket = new ServerSocket(3445, NUM_CONNECTIONS);
+			BlockingQueue<String> queue = new LinkedBlockingQueue<String>();
+			ArrayList<PrintWriter> writer = new ArrayList<PrintWriter>();
+			ArrayList<ReaderThread> readerThreads = new ArrayList<>();
+			
+			WriterThread writerThread = new WriterThread(writer, queue);
+			writerThread.start();
+			
+			for(int i = 0; i < NUM_CONNECTIONS; i++) {
+				ConnectionThread connectionThread = new ConnectionThread(serverSocket, readerThreads, queue, writer);
+				connectionThread.start();
+			}
+			
+			Scanner scanner = new Scanner(System.in);
+			if(scanner.nextLine().contentEquals("quit")) {
+				writerThread.quit();
+
+				for(ReaderThread readerThread : readerThreads) {
+					readerThread.quit();
+				}
+				serverSocket.close();
+				scanner.close();
+			}
+			
+			
+		} catch(Exception e) {
+>>>>>>> ebb25cd29ef2e74a9155725fdd4fa0ee4b67f63e
 			e.printStackTrace();
 		}
 

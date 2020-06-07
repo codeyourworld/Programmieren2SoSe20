@@ -20,6 +20,7 @@ public class ReaderThread extends Thread {
 				String message = scanner.nextLine();
 				System.out.println(message);
 				queue.put(message);
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -28,5 +29,6 @@ public class ReaderThread extends Thread {
 	
 	public void quit() {
 		isRunning = false;
+		scanner.close();
 	}
 }
