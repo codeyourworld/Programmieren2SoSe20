@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Quiz</string>
+    <string name="welche_constraints_m_ssen_views_in_einem_constraintlayout_gesetzt_haben">Welche Constraints müssen Views in einem ConstraintLayout gesetzt haben?</string>
+</resources>
