@@ -4,13 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.CalendarView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
+    String date;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,5 +30,20 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        CalendarView calendarView = findViewById(R.id.calendarView);
+        calendarView.setOnDateChangeListener((CalendarView view, int year, int month, int dayOfMonth) -> {
+            date = dayOfMonth + "." + month + "." + year;
+        });
+
+        Object obj = ReadService.readObject(MainActivity.this);
+
+        if (obj == null) {
+            Log.i("Ausgabe", "Kein Objekt gefunden");
+        } else if(obj instanceof Event) {
+            calendarView.setDate(((Event) obj).getStartTime().getTimeInMillis());
+        }
+
+
     }
 }
