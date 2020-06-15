@@ -1,8 +1,5 @@
 package de.haw_hamburg.dailymanager;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,8 +10,10 @@ import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.Calendar;
-import java.util.Date;
 
 public class AddEntryActivity extends AppCompatActivity {
     private Calendar calendar;
@@ -23,12 +22,12 @@ public class AddEntryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_entry);
-
+        calendar = Calendar.getInstance();
         CalendarView calendarView = findViewById(R.id.addEntryCalendarView);
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                calendar = Calendar.getInstance();
+
                 calendar.set(Calendar.YEAR, year);
                 calendar.set(Calendar.MONTH, month);
                 calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);

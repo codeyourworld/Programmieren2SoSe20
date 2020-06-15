@@ -2,7 +2,6 @@ package de.haw_hamburg.dailymanager;
 
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Date;
 
 public class Event implements Serializable {
     private Calendar calendar;
