@@ -1,7 +1,5 @@
 package ufogame;
 
-import java.io.Serializable;
-
 import view.IGameObject;
 
 /**
@@ -13,7 +11,7 @@ import view.IGameObject;
  * @author Stephi
  *
  */
-public class Ufo implements IGameObject, Serializable {
+public class Ufo implements IGameObject{
 
 	private int x;
 	private int y;

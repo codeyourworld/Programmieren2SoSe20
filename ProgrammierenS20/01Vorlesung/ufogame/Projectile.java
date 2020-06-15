@@ -11,7 +11,7 @@ import view.IGameObject;
  * @author Stephi
  *
  */
-public class Projectile implements IGameObject {
+public class Projectile implements IGameObject{
 
 	private int x;
 	private int y;

@@ -51,10 +51,12 @@ public class GameFrameWork {
 	private LinkedList<Image> imageObjects;
 	private LinkedList<ITickableListener> ticks;
 	private LinkedList<Message> messages;
-	private int delay = 16;
-	private long time = 0;
+	private int delay = 30;
 
-	
+	public static void main(String[] args) {
+		new GameFrameWork();
+	}
+
 	/**
 	 * Creates an white window of the size 400x400 pixels. If you want to have a
 	 * bigger window use the setSize(int x, int y) method.
@@ -89,19 +91,14 @@ public class GameFrameWork {
 
 			@Override
 			public void run() {
-				long offset = System.currentTimeMillis()-time;				
-				time = System.currentTimeMillis();
-//				System.out.println(offset);
 				for (ITickableListener tickable : ticks) {
-					tickable.tick(offset);
-					
+					tickable.tick(delay);
 				}
 				gameFrame.update();
-				
 			}
 		};
 		Timer timer = new Timer();
-		timer.schedule(timerTask, 30, delay);
+		timer.schedule(timerTask, 50, delay);
 
 		gameFrame.addKeyListener(new KeyAdapter() {
 
@@ -176,9 +173,7 @@ public class GameFrameWork {
 	 */
 	public void addRectangle(Rectangle rectangle) throws NullPointerException {
 		if (rectangle != null) {
-			synchronized (gameShapes) {
-				gameShapes.add(rectangle);
-			}
+			gameShapes.add(rectangle);
 		} else {
 			throw new NullPointerException("The rectangle object is null");
 		}
@@ -194,9 +189,7 @@ public class GameFrameWork {
 	 */
 	public void addOval(Oval oval) throws NullPointerException {
 		if (oval != null) {
-			synchronized (gameShapes) {
-				gameShapes.add(oval);
-			}
+			gameShapes.add(oval);
 		} else {
 			throw new NullPointerException("The oval object is null");
 		}
@@ -337,11 +330,7 @@ public class GameFrameWork {
 	 * @param background to draw
 	 */
 	public void setBackground(IBackground background) {
-		if(background != null) {
-			gameFrame.addBackground(background);
-		}  else {
-			throw new NullPointerException("The background object is null");
-		}
+		gameFrame.addBackground(background);
 	}
 
 	/**
@@ -350,11 +339,8 @@ public class GameFrameWork {
 	 * @param background to remove
 	 */
 	public void removeBackground(IBackground background) {
-		if(background != null) {
-			gameFrame.addBackground(null);			
-		}  else {
-			throw new NullPointerException("The background object is null");
-		}
+		gameFrame.addBackground(null);
+
 	}
 
 
@@ -366,32 +352,7 @@ public class GameFrameWork {
 	 * @see Message
 	 */
 	public void addMessage(Message message) {
-		if(message != null ) {
-			synchronized (message) {
-				messages.add(message);			
-			}
-		}  else {
-			throw new NullPointerException("The message object is null");
-		}
+		messages.add(message);
 	}
 
-	public void removeMessage(Message message) {
-		if(message != null ) {
-			synchronized (message) {
-				messages.remove(message);	
-			}
-		}  else {
-			throw new NullPointerException("The message object is null");
-		}
-	}
-
-	//TODO camera sight
-	public void setCamera(Camera camera) {
-		if(camera != null) {
-			gameFrame.setCamera(camera);
-		}  else {
-			throw new NullPointerException("The camera object is null");
-		}
-	}
-	
 }

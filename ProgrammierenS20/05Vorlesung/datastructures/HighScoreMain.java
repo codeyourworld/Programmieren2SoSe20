@@ -6,19 +6,20 @@ import java.util.Collections;
 public class HighScoreMain {
 
 	public static void main(String[] args) {
-		ArrayList<HighScore> highscore = new ArrayList<>();
-		highscore.add(new HighScore("Pika", 42));
-		highscore.add(new HighScore("Chuck", 10000));
-		highscore.add(new HighScore("Vegeta", 9001));
-		highscore.add(new HighScore("Edmund W", 42));
-		highscore.add(new HighScore("Covid", 19));
-		highscore.add(new HighScore("CovidTEST", 1337));
+
+		ArrayList<Highscore> highscore = new ArrayList<>();
+		highscore.add(new Highscore("Lale", 42));
+		highscore.add(new Highscore("Krischan", 10000));
+		highscore.add(new Highscore("Francie", 9999));
+		highscore.add(new Highscore("Lutz",90001));
+		highscore.add(new Highscore("Rita", 42));
+		highscore.add(new Highscore("Sonja",2020));
 		
 		Collections.sort(highscore);
 		
-		for(HighScore score : highscore) {
-			System.out.println(String.format("%20s:\t%d", score.getName(), score.getPoints()));
+		for(Highscore score: highscore) {
+			System.out.println(String.format("%20s:\t%d",score.getName(), score.getPoints()));
 		}
 	}
-	
+
 }

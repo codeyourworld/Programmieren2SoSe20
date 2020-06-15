@@ -1,52 +1,67 @@
 package datastructures;
 
-public class Contact implements Comparable<Contact> {
-	private long number;
+import java.io.Serializable;
+
+public class Contact implements Comparable<Contact>, Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private String name;
-
-	public long getNumber() {
-		return number;
+	private int handynr;
+	
+	
+	public Contact(String name, int handynr) {
+		super();
+		this.name = name;
+		this.handynr = handynr;
 	}
 
-	public void setNumber(long number) {
-		this.number = number;
-	}
 
 	public String getName() {
 		return name;
 	}
 
+
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public Contact(long number, String name) {
-		super();
-		this.number = number;
-		this.name = name;
+
+	public int getHandynr() {
+		return handynr;
 	}
 
+
+	public void setHandynr(int handynr) {
+		this.handynr = handynr;
+	}
+	
 	@Override
 	public int compareTo(Contact other) {
-		if(name.equals("Chuck Norris")) {
+		if(name.equals("Ami Mizuno")) {
 			return -1;
-		} else if(other.name.equals("Chuck Norris")) {
-			return 1;
-		} else if(other.name.equals("Bob Ross") || other.name.equals("Bruce Lee")) {
-			return 1;
-		} else if(name.equals("Uwe Boll")) {
+		}
+		else if(other.name.equals("Ami Mizuno")){
 			return 1;
 		}
-		int val = name.compareTo(other.name);
-		if(val == 0) {
-			//TODO dann vergleiche nummer
-			if(number < other.number) {
+		else if(other.name.equals("Makoto Kino")|| other.name.contentEquals("Rei Hino")) {
+			return 1;
+		}
+		else if(name.contentEquals("Bunny Tsukino")) {
+			return 1;
+		}
+		int val= name.compareTo(other.name);
+		if(val ==0) {
+			//TODO dann vergleiche Nummer
+			if(handynr < other.handynr) {
 				return -1;
-			} else if(number >= other.number) {
+			} else if(handynr >= other.handynr) {
 				return 1;
 			}
 		}
+
 		return val;
+
 	}
+	
 
 }
