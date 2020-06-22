@@ -44,13 +44,13 @@ public class ExerciseController {
 		for (Exercise exercise : exercises) {
 			if (level == exercise.getLevel()) {
 
-				while(!exercise.isSucceded()) {
+				while(!exercise.isSucceeded()) {
 					displayExercise(exercise);
 					checkSolution(in, exercise);
 					displayFeedback(exercise);
 					 
-					if(!exercise.isSucceded()) {
-						System.out.println("(a) Abbrechen\n(t) Tipp\n(b) beenden und sichern\n( ) nächster Versuch :)");
+					if(!exercise.isSucceeded()) {
+						System.out.println("(a) nächste Aufgabe\n(t) Tipp\n(b) beenden und sichern\n( ) nächster Versuch :)");
 						String answer = in.nextLine();
 						if(answer.toLowerCase().matches("[t].*")) {
 							System.out.println("--------------------------- Tipp -------------------------------------------");
@@ -97,7 +97,7 @@ public class ExerciseController {
 		System.out.println("\nAlle Wörter sollten blau sein. Alles was erkannt wird, wird pink dargestellt.");
 		output(exercise.getBadWords(), ANSI_PURPLE, ANSI_BLUE);
 
-		if (exercise.isSucceded()) {
+		if (exercise.isSucceeded()) {
 			System.out.println("----------------------------------------------------------------------------");
 			System.out.println("\nSuper gemacht!");
 			System.out.println("\n-------------------- nächste Aufgabe ----------------------------------\n");
@@ -123,8 +123,11 @@ public class ExerciseController {
 			for (int i = 0; i < word.getIsMatched().length; i++) {
 				if (word.getIsMatched()[i]) {
 					System.out.print(colorOK + word.getWord().charAt(i) + ANSI_RESET);
+					//System.out.print(word.getWord().charAt(i));
 				} else {
-					System.out.print(colorNOk + word.getWord().charAt(i) + ANSI_RESET);
+					System.out.print(colorOK + word.getWord().charAt(i) + ANSI_RESET);
+					//System.out.print(word.getWord().charAt(i));
+					
 				}
 			}
 			System.out.println();

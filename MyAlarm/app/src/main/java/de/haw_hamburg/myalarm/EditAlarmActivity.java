@@ -12,8 +12,9 @@ public class EditAlarmActivity extends AppCompatActivity {
 
     private AlarmClock alarmClock;
 
-    public TextView colorTextView(EditAlarmActivity.this, TextView day, boolean isDay) {
+    public TextView colorTextView(TextView day, boolean isDay) {
         day.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
+        return day;
     }
 
     @Override
@@ -38,13 +39,13 @@ public class EditAlarmActivity extends AppCompatActivity {
         isOnSwitch.setChecked(alarmClock.isOn());
 
         //init text views
-        TextView monTextView = colorTextView((TextView) findViewById(R.id.monday), alarmClock.getDay(AlarmClock.MONDAY));
-        TextView tueTextView = colorTextView((TextView) findViewById(R.id.tuesday), alarmClock.getDay(AlarmClock.TUESDAY));
-        TextView wedTextView = colorTextView((TextView) findViewById(R.id.wednesday), alarmClock.getDay(AlarmClock.WEDNESDAY));
-        TextView thuTextView = colorTextView((TextView) findViewById(R.id.thursday), alarmClock.getDay(AlarmClock.TUESDAY));
-        TextView friTextView = colorTextView((TextView) findViewById(R.id.friday), alarmClock.getDay(AlarmClock.FRIDAY));
-        TextView satTextView = colorTextView((TextView) findViewById(R.id.saturday), alarmClock.getDay(AlarmClock.SATURDAY));
-        TextView sunTextView = colorTextView((TextView) findViewById(R.id.sunday), alarmClock.getDay(AlarmClock.SUNDAY));
+        TextView monTextView = colorTextView(findViewById(R.id.monday), alarmClock.getDay(AlarmClock.MONDAY));
+        TextView tueTextView = colorTextView(findViewById(R.id.tuesday), alarmClock.getDay(AlarmClock.TUESDAY));
+        TextView wedTextView = colorTextView(findViewById(R.id.wednesday), alarmClock.getDay(AlarmClock.WEDNESDAY));
+        TextView thuTextView = colorTextView(findViewById(R.id.thursday), alarmClock.getDay(AlarmClock.TUESDAY));
+        TextView friTextView = colorTextView(findViewById(R.id.friday), alarmClock.getDay(AlarmClock.FRIDAY));
+        TextView satTextView = colorTextView(findViewById(R.id.saturday), alarmClock.getDay(AlarmClock.SATURDAY));
+        TextView sunTextView = colorTextView(findViewById(R.id.sunday), alarmClock.getDay(AlarmClock.SUNDAY));
 
         setDayListener(monTextView, AlarmClock.MONDAY);
         setDayListener(tueTextView, AlarmClock.TUESDAY);
@@ -59,7 +60,7 @@ public class EditAlarmActivity extends AppCompatActivity {
     private void setDayListener(TextView textView, int index) {
         textView.setOnClickListener(v -> {
             alarmClock.setDay(!alarmClock.getDay(index), index);
-            colorTextView(this, (TextView) v, alarmClock.getDay(index));
+            colorTextView(textView, alarmClock.getDay(index));
         });
     }
 }

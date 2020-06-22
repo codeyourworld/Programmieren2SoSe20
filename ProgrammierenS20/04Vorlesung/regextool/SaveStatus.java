@@ -103,7 +103,7 @@ public class SaveStatus {
 		try (FileWriter fw = new FileWriter(file); 
 			BufferedWriter bufferedWriter = new BufferedWriter(fw)) {
 			for(Exercise exercise : exercises) {
-				bufferedWriter.write("Excercise : " + (exercise.isSucceded()? " Mission completed \n" : " Waiting to be solved \n") + exercise.getText()+"\n\n");
+				bufferedWriter.write("Excercise : " + (exercise.isSucceeded()? " Mission completed \n" : " Waiting to be solved \n") + exercise.getText()+"\n\n");
 				bufferedWriter.newLine();
 			}
 				

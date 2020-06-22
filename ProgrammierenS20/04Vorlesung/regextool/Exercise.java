@@ -17,7 +17,7 @@ public class Exercise implements Serializable{
 	private String text;
 	private ArrayList<Word> goodWords = new ArrayList<Word>();
 	private ArrayList<Word> badWords = new ArrayList<Word>();
-	private boolean succeded;
+	private boolean succeeded;
 	private String feedback;
 	private int level;
 	private ArrayList<String> hints = new ArrayList<String>();
@@ -32,12 +32,12 @@ public class Exercise implements Serializable{
 		this.badWords = badWords;
 	}
 
-	public boolean isSucceded() {
-		return succeded;
+	public boolean isSucceeded() {
+		return succeeded;
 	}
 
-	public void setSucceded(boolean succeded) {
-		this.succeded = succeded;
+	public void setSucceded(boolean succeeded) {
+		this.succeeded = succeeded;
 	}
 
 	public String getText() {

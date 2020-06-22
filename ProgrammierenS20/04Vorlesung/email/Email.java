@@ -20,6 +20,7 @@ public class Email {
 
 	/**
 	 * With that constructor you can set a title and a message of a mail.
+	 * in addition to a sender and receiver
 	 * @param title of the mail
 	 * @param sender sender email address 
 	 * @param receiver receiver email address
@@ -119,12 +120,12 @@ public class Email {
 	
 	/**
 	 * 
-	 * @return a string in format of title<p>message
+	 * @return a string in format of title<p>sender:message
 	 */
 	@Override
 	public String toString() {
 		
-		String mail = title + "\n\n" + message;
+		String mail = title + "\n\n" + sender + ":" + message;
 		return mail;
 	}
 }
